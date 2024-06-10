@@ -1,0 +1,14 @@
+<p>listando assistentes</p>
+<div class="card-wrapper" *ngIf="assistentes.length > 0, else semAssistentes">
+  <div *ngFor="let assistente of assistentes">
+    <app-user-assistantes [assistente]="assistente"></app-user-assistantes>
+
+  </div>
+
+</div>
+
+<ng-template #semAssistentes>
+  <div class="ff-inter sem-assistentes">
+    <p>Ainda não há assistentes cadastrados.</p>
+  </div>
+</ng-template>

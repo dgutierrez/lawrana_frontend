@@ -1,0 +1,14 @@
+<mat-card class="card-assistente">
+
+  <img mat-card-image src="assets/imagens/lawrana-icon.png" alt="Assistente">
+  <mat-card-content>
+    <ul>
+      <li>{{ assistente.nome }}</li>
+      <li>{{ assistente.escopo }}</li>
+    </ul>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button color="primary">Detalhes</button>
+    <button mat-flat-button color="primary" disabled="{{ assistente.editavel }}">Editar</button>
+  </mat-card-actions>
+</mat-card>

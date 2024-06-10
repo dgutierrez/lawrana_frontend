@@ -1,0 +1,26 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar {
+  background-color: rgb(247,247,247);;
+  color: black;
+}
+
+.mat-toolbar .mat-mdc-button-base.mat-mdc-button-base.mat-unthemed {
+  --mdc-text-button-label-text-color: black;
+  --mdc-outlined-button-label-text-color: var(--mat-toolbar-container-text-color);
+}
+
+.mat-mdc-outlined-button:not(:disabled) {
+  color: black;
+}
+
+.texto-logo {
+  height: 50.5px;
+  width: 255.75px;
+}
+
+button {
+  margin: 0 16px;
+}
