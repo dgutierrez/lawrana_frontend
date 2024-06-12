@@ -2,20 +2,34 @@ import { Component, Input } from '@angular/core';
 import { Assistente } from '../../../interfaces/assistente';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { Router, RouterModule } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-user-assistantes',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule],
+  imports: [MatCardModule, MatButtonModule, RouterModule, MatFormFieldModule, MatInputModule],
   templateUrl: './user-assistantes.component.html',
   styleUrl: './user-assistantes.component.scss'
 })
 export class UserAssistantesComponent {
   @Input() assistente: Assistente = {
     contexto: '',
+    descricao: 'descricao',
     editavel: false,
     escopo: 'Publico',
     nome: 'teste',
-    codigo_assistente: ''
+    codigo_assistente: '',
+    foto: ''
+  }
+
+  constructor(private router: Router){
+
+  }
+
+  editarAssistente(a: Assistente){
+    console.log(a.nome);
+    this.router.navigate(['assistentes/editar'])
   }
 }
