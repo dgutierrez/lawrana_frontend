@@ -23,27 +23,16 @@ export class ListarUserChatComponent {
     {
       icon: 'dashboard',
       label: 'Dashboard',
-      route: 'chats/chat/:id'
+      route: 'chat'
     },
     {
       icon: 'people',
       label: 'Assistentes',
-      route: 'assistentes'
+      route: 'chat'
     },
   ])
 
-  @Input() chatItems2:ChatItem[] =[
-    {
-      icon: 'dashboard',
-      label: 'Dashboard',
-      route: 'chats/chat/:id'
-    },
-    {
-      icon: 'people',
-      label: 'Assistentes',
-      route: 'assistentes'
-    },
-  ]
+
 
   chats : Chat[] = [{
     criado_em: '12/06/2024',

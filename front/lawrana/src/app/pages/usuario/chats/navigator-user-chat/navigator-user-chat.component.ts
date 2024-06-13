@@ -28,19 +28,6 @@ export class NavigatorUserChatComponent {
     },
   ]);
 
-  navChatItems2: ChatItem[] =[
-    {
-      icon: 'dashboard',
-      label: 'Chat 1',
-      route: 'chats/chat'
-    },
-    {
-      icon: 'people',
-      label: 'Chat 2',
-      route: 'chats/chat'
-    },
-  ];
-
   collapsed = signal(false)
 
   sideNavWidth = computed(() =>
@@ -48,20 +35,6 @@ export class NavigatorUserChatComponent {
   );
 
   constructor(){
-    this.navChatItems = signal<ChatItem[]>([
-      {
-        icon: 'dashboard',
-        label: 'Chat 1',
-        route: 'chats/chat'
-      },
-      {
-        icon: 'people',
-        label: 'Chat 2',
-        route: 'chats/chat'
-      },
-    ]);
 
-    console.log('navChatItems ' + this.navChatItems.length )
-    console.log('navChatItems2 ' + this.navChatItems2.length )
   }
 }

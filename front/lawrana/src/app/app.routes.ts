@@ -33,8 +33,13 @@ export const routes: Routes = [
     path: 'usuario',
     component: UserHomeComponent,
     children: [
-      { path: 'chats', component: NavigatorUserChatComponent },
-      { path: 'chats/chat', component: UserChatComponent },
+      { path: 'chats',
+        component: NavigatorUserChatComponent,
+        children: [
+          { path: 'chat', component: UserChatComponent }
+        ]
+      },
+
       { path: 'assistentes', component: ListarUserAssistenteComponent },
       { path: 'assistentes/editarAssistente/:id', component: EditarUserAssistenteComponent },
       { path: 'assistentes/criarAssistente', component: CriarUserAssistenteComponent },
