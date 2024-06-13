@@ -1,0 +1,48 @@
+<div class="flex-container">
+  <div class="div-foto">
+    <img width="200" height="200" src="assets/imagens/lawrana-icon.png" alt="Imagem assistente">
+    <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      <mat-icon>camera</mat-icon>
+    </button>
+
+    <input type="file" appearance="outline" >
+  </div>
+  <mat-form-field class="input_container" appearance="outline" [style.width.px]=500>
+    <mat-label>Foto</mat-label>
+    <input matInput placeholder="Foto" [(ngModel)]="assistente.foto" >
+  </mat-form-field>
+  <p></p>
+  <mat-form-field class="input_container" appearance="outline" [style.width.px]=500>
+    <mat-label>Nome</mat-label>
+    <input matInput placeholder="Nome" [(ngModel)]="assistente.nome" >
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Escopo</mat-label>
+    <mat-select [(ngModel)]="assistente.escopo">
+      <mat-option value="Publico">Publico</mat-option>
+      <mat-option value="Privado">Privado</mat-option>
+    </mat-select>
+  </mat-form-field>
+<p></p>
+  <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+    <mat-label>Descrição</mat-label>
+    <input matInput placeholder="Descrição" [(ngModel)]="assistente.descricao" >
+  </mat-form-field>
+  <p></p>
+  <mat-form-field [style.width.px]=500 appearance="outline">
+    <mat-label>Contexto</mat-label>
+    <textarea matInput [(ngModel)]="assistente.contexto"></textarea>
+  </mat-form-field>
+<p></p>
+  <mat-form-field appearance="outline">
+    <mat-label>Escopo</mat-label>
+    <mat-select [(ngModel)]="assistente.escopo">
+      <mat-option value="Publico">Publico</mat-option>
+      <mat-option value="Privado">Privado</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="acoes">
+  <button routerLink="/assistentes"  mat-flat-button color="primary">Salvar</button>
+  <button routerLink="/usuario/assistentes" mat-flat-button color="warn">Cancelar</button>
+</div>
