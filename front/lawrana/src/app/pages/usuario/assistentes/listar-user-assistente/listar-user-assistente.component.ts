@@ -4,11 +4,13 @@ import { MatCardModule } from '@angular/material/card';
 import { NgFor, NgIf } from '@angular/common';
 import { UserAssistantesComponent } from '../../user-assistantes/user-assistantes.component';
 import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-listar-user-assistente',
   standalone: true,
-  imports: [MatCardModule, NgFor, NgIf, UserAssistantesComponent],
+  imports: [MatCardModule, NgFor, NgIf, UserAssistantesComponent, MatButtonModule, MatIconModule],
   templateUrl: './listar-user-assistente.component.html',
   styleUrl: './listar-user-assistente.component.scss'
 })

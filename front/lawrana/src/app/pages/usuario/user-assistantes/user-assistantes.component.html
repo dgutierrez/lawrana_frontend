@@ -7,8 +7,16 @@
       <li>{{ assistente.escopo }}</li>
     </ul>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-flat-button color="primary">Detalhes</button>
-    <button mat-flat-button color="primary" disabled="{{ assistente.editavel }}" routerLink="/usuario/assistentes/editarAssistente/{{ assistente.codigo_assistente }}">Editar</button>
+
+  <mat-card-actions class="button-wrapper">
+    <button mat-mini-fab color="primary" matTooltip="Editar assistente" class="fab-button" aria-label="Editar" disabled="{{ assistente.editavel }}" routerLink="/usuario/assistentes/editarAssistente/{{ assistente.codigo_assistente }}">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-mini-fab color="primary" matTooltip="Criar novo chat" class="fab-button" aria-label="Novo chat">
+      <mat-icon>add_comment</mat-icon>
+    </button>
+    <button mat-mini-fab color="warn" matTooltip="Deletar assistente" class="fab-button" aria-label="Deletar">
+      <mat-icon>delete</mat-icon>
+    </button>
   </mat-card-actions>
 </mat-card>

@@ -1,4 +1,9 @@
-<p>listando assistentes</p>
+<mat-card-actions>
+  <button mat-flat-button color="primary">
+    <mat-icon>add</mat-icon>
+    Novo assistente
+  </button>
+</mat-card-actions>
 <div class="card-wrapper" *ngIf="assistentes.length > 0, else semAssistentes">
   <div *ngFor="let assistente of assistentes">
     <app-user-assistantes [assistente]="assistente"></app-user-assistantes>

@@ -2,10 +2,7 @@
   max-width: 320px;
   background-color: #FEF7FF;
   border-radius: 12px;
-  button {
-    width: 100%;
-    margin: 0 16px 48px;
-  }
+
   ul {
     list-style: none;
     padding: 0;
@@ -18,4 +15,19 @@
       text-align: center;
     }
   }
+}
+
+.action-button {
+  width: 100%;
+  margin: 0 16px 48px;
+}
+
+
+.button-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 16px;
+  gap: 48px;
+  margin-bottom: 5px;
 }
