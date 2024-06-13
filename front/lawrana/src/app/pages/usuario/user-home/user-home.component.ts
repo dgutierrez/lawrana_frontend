@@ -19,7 +19,7 @@ export class UserHomeComponent {
     },
     {
       icon: 'chat',
-      label: 'Chat',
+      label: 'Chats',
       route: 'chats'
     },
     {

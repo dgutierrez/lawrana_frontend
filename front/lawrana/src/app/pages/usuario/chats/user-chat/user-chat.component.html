@@ -1,0 +1,22 @@
+<mat-card class="card-chat">
+
+  <img mat-card-image src="assets/imagens/lawrana-icon.png" alt="Assistente">
+  <mat-card-content>
+    <ul>
+      <li>{{ chat.nome }}</li>
+      <li>{{ chat.criado_em }}</li>
+    </ul>
+  </mat-card-content>
+
+  <mat-card-actions class="button-wrapper">
+    <button mat-mini-fab color="primary" matTooltip="Editar chat" class="fab-button" aria-label="Editar" routerLink="/usuario/chats">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-mini-fab color="primary" matTooltip="Entrar no chat" class="fab-button" aria-label="chat">
+      <mat-icon>forum</mat-icon>
+    </button>
+    <button mat-mini-fab color="warn" matTooltip="Deletar chat" class="fab-button" aria-label="Deletar">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

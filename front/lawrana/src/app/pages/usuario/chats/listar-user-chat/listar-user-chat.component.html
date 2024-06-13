@@ -1,0 +1,51 @@
+<div>
+  <mat-card-actions>
+    <mat-button-toggle-group name="orderBy" aria-label="Favorite Value" value="data">
+      <mat-button-toggle value="data">
+        <mat-icon>
+          event
+        </mat-icon>
+        Data chat
+      </mat-button-toggle>
+      <mat-button-toggle value="chat">
+        <mat-icon>
+          sort_by_alpha
+        </mat-icon>
+        Nome chat
+      </mat-button-toggle>
+      <mat-button-toggle value="assistente">
+        <mat-icon>
+          sort_by_alpha
+        </mat-icon>
+        Nome assistente
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <!-- <mat-slide-toggle [(ngModel)]="isChecked">Slide Toggle Checked: {{isChecked}}</mat-slide-toggle> -->
+    <mat-slide-toggle checked="true">A-Z</mat-slide-toggle>
+  </mat-card-actions>
+
+  <mat-card-actions>
+    <mat-button-toggle-group name="orderAsc" aria-label="Favorite Color">
+      <mat-button-toggle value="desc">
+        <mat-icon>
+          swap_vert
+        </mat-icon>
+        Ordem
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-card-actions>
+</div>
+
+<div class="card-wrapper" *ngIf="chats.length > 0, else semChats">
+  <div *ngFor="let chat of chats">
+    <app-user-chat [chat]="chat"></app-user-chat>
+
+  </div>
+
+</div>
+
+<ng-template #semChats>
+  <div class="ff-inter sem-chats">
+    <p>Ainda não há chats criados.</p>
+  </div>
+</ng-template>
