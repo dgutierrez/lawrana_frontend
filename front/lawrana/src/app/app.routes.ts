@@ -10,6 +10,7 @@ import { ListarUserAssistenteComponent } from './pages/usuario/assistentes/lista
 import { EditarUserAssistenteComponent } from './pages/usuario/assistentes/editar-user-assistente/editar-user-assistente.component';
 import { CriarUserAssistenteComponent } from './pages/usuario/assistentes/criar-user-assistente/criar-user-assistente.component';
 import { ListarUserChatComponent } from './pages/usuario/chats/listar-user-chat/listar-user-chat.component';
+import { NavigatorUserChatComponent } from './pages/usuario/chats/navigator-user-chat/navigator-user-chat.component';
 
 export const routes: Routes = [
   {
@@ -32,7 +33,8 @@ export const routes: Routes = [
     path: 'usuario',
     component: UserHomeComponent,
     children: [
-      { path: 'chats', component: ListarUserChatComponent },
+      { path: 'chats', component: NavigatorUserChatComponent },
+      { path: 'chats/chat', component: UserChatComponent },
       { path: 'assistentes', component: ListarUserAssistenteComponent },
       { path: 'assistentes/editarAssistente/:id', component: EditarUserAssistenteComponent },
       { path: 'assistentes/criarAssistente', component: CriarUserAssistenteComponent },

@@ -1,0 +1,12 @@
+<div>
+  <mat-sidenav-container>
+    <mat-sidenav opened mode="side" [style.width]="sideNavWidth()">
+      <app-listar-user-chat [chatItems]="navChatItems"></app-listar-user-chat>
+    </mat-sidenav>
+    <mat-sidenav-content class="content" [style.margin-left]="sideNavWidth()" >
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+

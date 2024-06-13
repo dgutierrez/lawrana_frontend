@@ -8,6 +8,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+export type ChatItem = {
+  icon: string;
+  label: string;
+  route: string;
+}
+
+
 @Component({
   selector: 'app-user-chat',
   standalone: true,
