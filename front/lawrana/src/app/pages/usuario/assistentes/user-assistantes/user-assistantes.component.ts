@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Assistente } from '../../../interfaces/assistente';
+import { Assistente } from '../../../../interfaces/assistente';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';

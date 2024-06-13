@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Assistente } from '../../../../interfaces/assistente';
 import { MatCardModule } from '@angular/material/card';
 import { NgFor, NgIf } from '@angular/common';
-import { UserAssistantesComponent } from '../../user-assistantes/user-assistantes.component';
+import { UserAssistantesComponent } from '../user-assistantes/user-assistantes.component';
 import { Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
