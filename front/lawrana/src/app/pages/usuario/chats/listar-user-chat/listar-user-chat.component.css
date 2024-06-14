@@ -6,3 +6,25 @@
   gap: 16px;
   margin-bottom: 40px;
 }
+
+.custom-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px; /* Espaço entre a imagem e o texto */
+}
+
+mat-nav-list a[mat-list-item] img {
+  width: 32px;
+  height: 32px;
+}
+
+mat-nav-list a[mat-list-item] {
+  display: flex;
+  align-items: left;
+  padding: 10px 0; /* Ajuste conforme necessário */
+}
+
+span[matListItemTitle] {
+  align-self: flex-start; /* Alinha o texto ao topo */
+  margin-top: 4px; /* Ajusta a margem superior para melhor alinhamento */
+}

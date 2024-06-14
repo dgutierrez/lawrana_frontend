@@ -15,6 +15,7 @@ export type ChatItem = {
   icon: string;
   label: string;
   route: string;
+  data: string;
 }
 
 

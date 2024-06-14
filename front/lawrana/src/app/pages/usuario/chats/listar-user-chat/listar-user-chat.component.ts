@@ -23,12 +23,14 @@ export class ListarUserChatComponent {
     {
       icon: 'dashboard',
       label: 'Dashboard',
-      route: 'chat'
+      route: 'chat',
+      data: '13/06/2024'
     },
     {
       icon: 'people',
       label: 'Assistentes',
-      route: 'chat'
+      route: 'chat',
+      data: '12/06/2024'
     },
   ])
 
