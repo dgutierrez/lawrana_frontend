@@ -13,7 +13,7 @@ import { MatSelectModule } from '@angular/material/select'
 @Component({
   selector: 'app-editar-user-assistente',
   standalone: true,
-  imports: [MatFormFieldModule, MatIconModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterModule, MatSelectModule],
+  imports: [MatFormFieldModule, MatIconModule, FormsModule, MatInputModule, MatButtonModule, RouterModule, MatSelectModule],
   templateUrl: './editar-user-assistente.component.html',
   styleUrl: './editar-user-assistente.component.css'
 })
