@@ -19,6 +19,7 @@ export class UsuarioTokenService {
 
   buscarToken() {
     if (typeof localStorage !== 'undefined') {
+      console.log(`buscando token: ${localStorage.getItem(KEY)}`);
       return localStorage.getItem(KEY) ?? "";
     }
     return "";

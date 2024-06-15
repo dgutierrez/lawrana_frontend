@@ -1,7 +1,10 @@
 import { MenuItem } from './../../../shared/meu-sidenav/meu-sidenav.component';
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { NavigatorComponent } from '../../../shared/navigator/navigator.component';
 import { ViewerComponent } from '../../../shared/viewer/viewer.component';
+import { UsuarioTokenService } from '../../../core/services/usuario-token.service';
+import { Router } from '@angular/router';
+import { UsuarioService } from '../../../core/services/usuario.service';
 
 @Component({
   selector: 'app-user-home',
@@ -10,7 +13,7 @@ import { ViewerComponent } from '../../../shared/viewer/viewer.component';
   templateUrl: './user-home.component.html',
   styleUrl: './user-home.component.css'
 })
-export class UserHomeComponent {
+export class UserHomeComponent implements OnInit {
   usuarioMenuItems = signal<MenuItem[]>([
     {
       icon: 'people',
@@ -28,4 +31,22 @@ export class UserHomeComponent {
       route: 'chats'
     }
   ])
+
+  nomeUsuario: string = '';
+
+  constructor(
+      private userService: UsuarioService,
+      private router: Router
+  ){
+
+  }
+
+  ngOnInit():void {
+    if(!this.userService.estaLogado()){
+      this.router.navigate(['/usuario/login']);
+    }else{
+      //this.userService.decodificarJwt().su
+      this.nomeUsuario = 'Ususario logado';
+    }
+  }
 }

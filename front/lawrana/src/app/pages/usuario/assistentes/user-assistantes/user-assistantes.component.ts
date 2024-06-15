@@ -20,7 +20,7 @@ export class UserAssistantesComponent {
     contexto: '',
     descricao: 'descricao',
     editavel: false,
-    escopo: 'Publico',
+    codigo_escopo: 'Publico',
     nome: 'teste',
     codigo_assistente: '',
     foto: ''

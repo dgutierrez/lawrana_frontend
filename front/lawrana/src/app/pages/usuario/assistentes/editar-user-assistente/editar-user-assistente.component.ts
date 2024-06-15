@@ -22,7 +22,7 @@ export class EditarUserAssistenteComponent {
     contexto: 'contexto mock',
     descricao: 'descricao',
     editavel: true,
-    escopo: 'Privado',
+    codigo_escopo: 'Privado',
     nome: 'Assistente mock 1',
     codigo_assistente: 'abc-123',
     foto: 'foto'

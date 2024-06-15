@@ -3,7 +3,7 @@ export interface Assistente {
   nome: string
   descricao: string
   contexto: string
-  escopo: string
+  codigo_escopo: string
   editavel: boolean
   foto: string
 }
