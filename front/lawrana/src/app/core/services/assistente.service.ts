@@ -87,4 +87,13 @@ export class AssistenteService implements OnInit {
         })
       );
   }
+
+  alterarAssistente(assistente: Assistente): Observable<Assistente>{
+    this.token = this.userTokenService.buscarToken()
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    })
+
+    return this.http.put<Assistente>(`${this.apiUrl}/assistente/${assistente.codigo_assistente}`, assistente, { headers })
+  }
 }

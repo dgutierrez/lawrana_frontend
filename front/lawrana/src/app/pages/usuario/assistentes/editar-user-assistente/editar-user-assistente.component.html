@@ -1,11 +1,11 @@
 <div class="flex-container">
   <div class="div-foto">
-    <img width="200" height="200" [src]="assistente.foto" alt="Imagem assistente">
-    <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <img width="200" height="200" *ngIf="assistente.foto" [src]="assistente.foto" alt="Imagem assistente">
+    <button mat-fab color="primary" (click)="fileInput.click()" aria-label="Example icon button with a delete icon">
       <mat-icon>camera</mat-icon>
     </button>
 
-    <input type="file" appearance="outline" >
+    <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
   </div>
   <mat-form-field class="input_container" appearance="outline" [style.width.px]=500>
     <mat-label>Nome</mat-label>
@@ -32,6 +32,6 @@
 
 </div>
 <div class="acoes">
-  <button routerLink="/assistentes"  mat-flat-button color="primary">Salvar</button>
+  <button (click)="alterarAssistente()"  mat-flat-button color="primary">Salvar</button>
   <button routerLink="/usuario/assistentes" mat-flat-button color="warn">Cancelar</button>
 </div>

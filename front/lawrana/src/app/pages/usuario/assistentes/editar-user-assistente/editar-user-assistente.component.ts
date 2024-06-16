@@ -8,13 +8,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatSelectModule } from '@angular/material/select'
+import { NgIf } from '@angular/common';
 //import { BrowserModule }  from '@angular/platform-browser';
 //import { MatFileUploadModule } from 'angular-material-fileupload';
 
 @Component({
   selector: 'app-editar-user-assistente',
   standalone: true,
-  imports: [MatFormFieldModule, MatIconModule, FormsModule, MatInputModule, MatButtonModule, RouterModule, MatSelectModule],
+  imports: [MatFormFieldModule, MatIconModule, FormsModule, MatInputModule, MatButtonModule, RouterModule, MatSelectModule, NgIf],
   templateUrl: './editar-user-assistente.component.html',
   styleUrl: './editar-user-assistente.component.css'
 })
@@ -36,6 +37,20 @@ export class EditarUserAssistenteComponent implements OnInit {
 
   }
 
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.assistente.foto = reader.result;
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
 
@@ -46,5 +61,17 @@ export class EditarUserAssistenteComponent implements OnInit {
 
       console.log(this.assistente);
     })
+  }
+
+  alterarAssistente(){
+    this.assistenteService.alterarAssistente(this.assistente).subscribe({
+      next: (value) => {
+        console.log('assistente alterado', value);
+        this.router.navigate(['/usuario/assistentes']);
+      },
+      error: (err) => {
+        console.log('exception...', err);
+      }
+    });
   }
 }
