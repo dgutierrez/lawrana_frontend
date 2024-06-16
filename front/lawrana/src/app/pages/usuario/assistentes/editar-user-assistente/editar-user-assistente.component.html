@@ -18,9 +18,9 @@
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Escopo</mat-label>
-    <mat-select [(ngModel)]="assistente.codigo_escopo">
-      <mat-option value="Publico">Publico</mat-option>
-      <mat-option value="Privado">Privado</mat-option>
+    <mat-select [(ngModel)]="assistente.escopo">
+      <mat-option value="2">Compartilhado</mat-option>
+      <mat-option value="3">Privado</mat-option>
     </mat-select>
   </mat-form-field>
 <p></p>
@@ -34,13 +34,7 @@
     <textarea matInput [(ngModel)]="assistente.contexto"></textarea>
   </mat-form-field>
 <p></p>
-  <mat-form-field appearance="outline">
-    <mat-label>Escopo</mat-label>
-    <mat-select [(ngModel)]="assistente.codigo_escopo">
-      <mat-option value="Publico">Publico</mat-option>
-      <mat-option value="Privado">Privado</mat-option>
-    </mat-select>
-  </mat-form-field>
+
 </div>
 <div class="acoes">
   <button routerLink="/assistentes"  mat-flat-button color="primary">Salvar</button>

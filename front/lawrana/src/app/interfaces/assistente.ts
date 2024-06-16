@@ -3,7 +3,7 @@ export interface Assistente {
   nome: string
   descricao: string
   contexto: string
-  codigo_escopo: string
+  escopo: string
   editavel: boolean
-  foto: string
+  foto: string | ArrayBuffer | null;
 }

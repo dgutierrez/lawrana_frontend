@@ -20,7 +20,7 @@ export class ListarUserAssistenteComponent {
       contexto: 'contexto mock',
       descricao: 'descricao',
       editavel: true,
-      codigo_escopo: 'Privado',
+      escopo: 'Privado',
       nome: 'Assistente mock 1',
       codigo_assistente: 'abc-123',
       foto: ''
@@ -29,7 +29,7 @@ export class ListarUserAssistenteComponent {
       contexto: 'contexto mock 2',
       descricao: 'descricao',
       editavel: false,
-      codigo_escopo: 'Privado',
+      escopo: 'Privado',
       nome: 'Assistente mock 2',
       codigo_assistente: 'def-456',
       foto: ''
@@ -38,7 +38,7 @@ export class ListarUserAssistenteComponent {
       contexto: 'contexto mock 3',
       descricao: 'descricao',
       editavel: false,
-      codigo_escopo: 'Publico',
+      escopo: 'Publico',
       nome: 'Assistente mock 3',
       codigo_assistente: 'def-123',
       foto: ''
@@ -47,7 +47,7 @@ export class ListarUserAssistenteComponent {
       contexto: 'contexto mock 4',
       descricao: 'descricao',
       editavel: false,
-      codigo_escopo: 'Publico',
+      escopo: 'Publico',
       nome: 'Assistente mock 4',
       codigo_assistente: 'def-789',
       foto: ''
@@ -56,7 +56,7 @@ export class ListarUserAssistenteComponent {
       contexto: 'contexto mock 5',
       descricao: 'descricao',
       editavel: false,
-      codigo_escopo: 'Publico',
+      escopo: 'Publico',
       nome: 'Assistente mock 5',
       codigo_assistente: 'def-999',
       foto: ''
@@ -65,7 +65,7 @@ export class ListarUserAssistenteComponent {
       contexto: 'contexto mock 6',
       descricao: 'descricao',
       editavel: false,
-      codigo_escopo: 'Publico',
+      escopo: 'Publico',
       nome: 'Assistente mock 6',
       codigo_assistente: 'aaa-111',
       foto: ''
