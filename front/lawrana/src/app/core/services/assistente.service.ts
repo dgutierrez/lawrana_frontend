@@ -1,10 +1,14 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Assistente } from '../../interfaces/assistente';
-import { Observable } from 'rxjs';
+import { Observable, tap, map, catchError, throwError } from 'rxjs';
 import { UsuarioService } from './usuario.service';
 import { UsuarioTokenService } from './usuario-token.service';
+
+interface ListaAssistentesResponse {
+  data: Assistente[];
+}
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +34,25 @@ export class AssistenteService implements OnInit {
     console.log(this.token)
     console.log(assistente)
     return this.http.post<Assistente>(`${this.apiUrl}/assistente`, assistente, { headers })
+  }
+
+  listarAssistentes(): Observable<Assistente[]>{
+    this.token = this.userTokenService.buscarToken()
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    })
+
+    return this.http.get<ListaAssistentesResponse>(`${this.apiUrl}/assistente`, { headers, observe: 'response' })
+      .pipe(
+        tap(response => {
+          console.log('Response completo:', response);
+        }),
+        map(response => {
+          // Verifique se a estrutura de resposta está correta
+          const assistentes = response.body?.data || [];
+          console.log('Assistentes mapeados:', assistentes);
+          return assistentes;
+        })
+      );
   }
 }

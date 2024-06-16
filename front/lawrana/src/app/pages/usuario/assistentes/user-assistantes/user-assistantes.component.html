@@ -1,6 +1,6 @@
 <mat-card class="card-assistente">
 
-  <img mat-card-image src="assets/imagens/lawrana-icon.png" alt="Assistente">
+  <img mat-card-image [src]="assistente.foto" alt="Assistente">
   <mat-card-content>
     <ul>
       <li>{{ assistente.nome }}</li>
@@ -9,7 +9,7 @@
   </mat-card-content>
 
   <mat-card-actions class="button-wrapper">
-    <button mat-mini-fab color="primary" matTooltip="Editar assistente" class="fab-button" aria-label="Editar" disabled="{{ assistente.editavel }}" routerLink="/usuario/assistentes/editarAssistente/{{ assistente.codigo_assistente }}">
+    <button mat-mini-fab color="primary" matTooltip="Editar assistente" class="fab-button" aria-label="Editar" disabled="{{ !assistente.editavel }}" routerLink="/usuario/assistentes/editarAssistente/{{ assistente.codigo_assistente }}">
       <mat-icon>edit</mat-icon>
     </button>
     <button mat-mini-fab color="primary" matTooltip="Criar novo chat" class="fab-button" aria-label="Novo chat">
