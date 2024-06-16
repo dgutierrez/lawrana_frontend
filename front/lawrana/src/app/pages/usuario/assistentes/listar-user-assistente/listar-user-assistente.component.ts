@@ -29,21 +29,12 @@ export class ListarUserAssistenteComponent implements OnInit {
 
   listarAssistentes() {
     this.assistenteService.listarAssistentes().subscribe((response: Assistente[]) => {
-      console.log('Buscando assistentes:', response);
-
       this.assistentes = response;
-      console.log('Assistentes atribuídos:', this.assistentes);
     });
-
-    /*this.assistenteService.listarAssistentes().subscribe({
-      next: (value) => {
-        console.log('lista de assistentes ok')
-        this.assistentes = value;
-
-      },
-      error: (err) => {
-        console.log('exception...', err);
-      }
-    });*/
   }
+
+  recarregarAssistentes() {
+    this.listarAssistentes();
+  }
+
 }

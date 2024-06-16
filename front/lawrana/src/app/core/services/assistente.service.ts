@@ -96,4 +96,13 @@ export class AssistenteService implements OnInit {
 
     return this.http.put<Assistente>(`${this.apiUrl}/assistente/${assistente.codigo_assistente}`, assistente, { headers })
   }
+
+  deletarAssistente(id: string): Observable<any> {
+    this.token = this.userTokenService.buscarToken()
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    })
+
+    return this.http.delete<Assistente>(`${this.apiUrl}/assistente/${id}`, { headers })
+  }
 }
