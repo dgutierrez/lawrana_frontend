@@ -1,6 +1,6 @@
 <div class="flex-container">
   <div class="div-foto">
-    <img width="200" height="200" src="assets/imagens/lawrana-icon.png" alt="Imagem assistente">
+    <img width="200" height="200" [src]="assistente.foto" alt="Imagem assistente">
     <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
       <mat-icon>camera</mat-icon>
     </button>
@@ -8,19 +8,14 @@
     <input type="file" appearance="outline" >
   </div>
   <mat-form-field class="input_container" appearance="outline" [style.width.px]=500>
-    <mat-label>Foto</mat-label>
-    <input matInput placeholder="Foto" [(ngModel)]="assistente.foto" >
-  </mat-form-field>
-  <p></p>
-  <mat-form-field class="input_container" appearance="outline" [style.width.px]=500>
     <mat-label>Nome</mat-label>
     <input matInput placeholder="Nome" [(ngModel)]="assistente.nome" >
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Escopo</mat-label>
     <mat-select [(ngModel)]="assistente.escopo">
-      <mat-option value="2">Compartilhado</mat-option>
-      <mat-option value="3">Privado</mat-option>
+      <mat-option value="Compartilhado">Compartilhado</mat-option>
+      <mat-option value="Privado">Privado</mat-option>
     </mat-select>
   </mat-form-field>
 <p></p>

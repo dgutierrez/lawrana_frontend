@@ -10,6 +10,10 @@ interface ListaAssistentesResponse {
   data: Assistente[];
 }
 
+interface BuscaAssistenteResponse {
+  data: Assistente;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -52,6 +56,34 @@ export class AssistenteService implements OnInit {
           const assistentes = response.body?.data || [];
           console.log('Assistentes mapeados:', assistentes);
           return assistentes;
+        })
+      );
+  }
+
+  buscarAssistente(id: string): Observable<Assistente>{
+    this.token = this.userTokenService.buscarToken()
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    })
+
+    return this.http.get<BuscaAssistenteResponse>(`${this.apiUrl}/assistente/${id}`, { headers, observe: 'response' })
+      .pipe(
+        tap(response => {
+          console.log('Response completo:', response);
+        }),
+        map(response => {
+          if (response.body && response.body.data) {
+            const assistente = response.body.data;
+            console.log('Assistente mapeado:', assistente);
+            return assistente;
+          } else {
+            console.error('Formato de resposta inesperado:', response);
+            throw new Error('Formato de resposta inesperado ou assistente não encontrado');
+          }
+        }),
+        catchError(error => {
+          console.error('Erro ao buscar assistente:', error);
+          return throwError(error);
         })
       );
   }
