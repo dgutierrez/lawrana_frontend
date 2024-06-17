@@ -12,7 +12,7 @@
     <button mat-mini-fab color="primary" matTooltip="Editar assistente" class="fab-button" aria-label="Editar" disabled="{{ !assistente.editavel }}" routerLink="/usuario/assistentes/editarAssistente/{{ assistente.codigo_assistente }}">
       <mat-icon>edit</mat-icon>
     </button>
-    <button mat-mini-fab color="primary" matTooltip="Criar novo chat" class="fab-button" aria-label="Novo chat">
+    <button mat-mini-fab color="primary" matTooltip="Criar novo chat" class="fab-button" aria-label="Novo chat" (click)="novoChar()">
       <mat-icon>add_comment</mat-icon>
     </button>
     <button mat-mini-fab color="warn" matTooltip="Deletar assistente" class="fab-button" aria-label="Deletar" (click)="openConfirmDialog()">

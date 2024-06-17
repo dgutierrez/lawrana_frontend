@@ -10,6 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalExclusaoComponent } from '../../../../shared/modal-exclusao/modal-exclusao.component';
 import { AssistenteService } from '../../../../core/services/assistente.service';
+import { ChatService } from '../../../../core/services/chat.service';
 
 @Component({
   selector: 'app-user-assistantes',
@@ -33,13 +34,26 @@ export class UserAssistantesComponent {
 
   constructor(private assistenteService: AssistenteService,
     private router: Router,
-    private dialog: MatDialog){
+    private dialog: MatDialog,
+    private chatService: ChatService){
 
   }
 
   editarAssistente(a: Assistente){
     console.log(a.nome);
     this.router.navigate(['assistentes/editar'])
+  }
+
+  novoChar(){
+    this.chatService.criarChat(this.assistente.codigo_assistente!).subscribe({
+      next: (value) => {
+        console.log('chat criado', value);
+        this.router.navigate(['/usuario/chats']);
+      },
+      error: (err) => {
+        console.log('exception...', err);
+      }
+    })
   }
 
   openConfirmDialog(): void {

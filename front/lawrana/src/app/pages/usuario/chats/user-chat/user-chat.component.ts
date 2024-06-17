@@ -29,9 +29,10 @@ export type ChatItem = {
 export class UserChatComponent {
   @Input() chat: Chat = {
     codigo_chat: '',
+    codigo_assistente: '',
     criado_em: '12/06/2024',
     foto_assistente: 'foto',
-    nome: 'Nome do chat',
+    nome_chat: 'Nome do chat',
     nome_assistente: 'Nome do assistente'
   }
 

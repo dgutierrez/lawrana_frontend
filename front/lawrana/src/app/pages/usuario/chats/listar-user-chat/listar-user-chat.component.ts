@@ -37,15 +37,17 @@ export class ListarUserChatComponent {
 
 
   chats : Chat[] = [{
+    codigo_assistente: '',
     criado_em: '12/06/2024',
     foto_assistente: 'foto',
-    nome: 'Nome Chat Mock',
+    nome_chat: 'Nome Chat Mock',
     nome_assistente: 'Nome assistente mock'
   },
   {
+    codigo_assistente: '',
     criado_em: '11/06/2024',
     foto_assistente: 'foto',
-    nome: 'Nome Chat Mock 2',
+    nome_chat: 'Nome Chat Mock 2',
     nome_assistente: 'Nome assistente mock 2'
   }]
 
