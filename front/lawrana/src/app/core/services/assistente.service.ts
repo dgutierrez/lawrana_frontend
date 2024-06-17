@@ -32,23 +32,11 @@ export class AssistenteService implements OnInit {
   }
 
   criarAssistente(assistente: Assistente): Observable<Assistente>{
-    this.token = this.userTokenService.buscarToken()
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
-    })
-    console.log('Enviando post para assistente')
-    console.log(this.token)
-    console.log(assistente)
-    return this.http.post<Assistente>(`${this.apiUrl}/assistente`, assistente, { headers })
+    return this.http.post<Assistente>(`${this.apiUrl}/assistente`, assistente)
   }
 
   listarAssistentes(): Observable<Assistente[]>{
-    this.token = this.userTokenService.buscarToken()
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
-    })
-
-    return this.http.get<ListaAssistentesResponse>(`${this.apiUrl}/assistente`, { headers, observe: 'response' })
+    return this.http.get<ListaAssistentesResponse>(`${this.apiUrl}/assistente`, { observe: 'response' })
       .pipe(
         tap(response => {
           console.log('Response completo:', response);
@@ -63,12 +51,7 @@ export class AssistenteService implements OnInit {
   }
 
   buscarAssistente(id: string): Observable<Assistente>{
-    this.token = this.userTokenService.buscarToken()
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
-    })
-
-    return this.http.get<BuscaAssistenteResponse>(`${this.apiUrl}/assistente/${id}`, { headers, observe: 'response' })
+    return this.http.get<BuscaAssistenteResponse>(`${this.apiUrl}/assistente/${id}`, { observe: 'response' })
       .pipe(
         tap(response => {
           console.log('Response completo:', response);
@@ -91,20 +74,10 @@ export class AssistenteService implements OnInit {
   }
 
   alterarAssistente(assistente: Assistente): Observable<Assistente>{
-    this.token = this.userTokenService.buscarToken()
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
-    })
-
-    return this.http.put<Assistente>(`${this.apiUrl}/assistente/${assistente.codigo_assistente}`, assistente, { headers })
+    return this.http.put<Assistente>(`${this.apiUrl}/assistente/${assistente.codigo_assistente}`, assistente)
   }
 
   deletarAssistente(id: string): Observable<any> {
-    this.token = this.userTokenService.buscarToken()
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
-    })
-
-    return this.http.delete<Assistente>(`${this.apiUrl}/assistente/${id}`, { headers })
+    return this.http.delete<Assistente>(`${this.apiUrl}/assistente/${id}`)
   }
 }

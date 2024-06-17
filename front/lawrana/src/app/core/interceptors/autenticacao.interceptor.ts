@@ -1,19 +1,29 @@
-import { HttpErrorResponse, HttpEvent, HttpEventType, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpEventType, HttpHandlerFn, HttpHeaders, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, catchError, tap, throwError } from 'rxjs';
+import { UsuarioTokenService } from '../services/usuario-token.service';
 
 export const autenticacaoInterceptor: HttpInterceptorFn = (req, next) => {
-  console.log('interceptando2')
+  //console.log('interceptando3')
+
+  const userTokenService = inject(UsuarioTokenService);
+  const router = inject(Router);
+  let token: string = ''
+
+  if (req.url.includes('empresa')) {
+    //console.log('A URL contém a palavra "empresa".');
+    // Faça algo quando a URL contém "empresa"
+  } else {
+    //console.log('A URL não contém a palavra "empresa".');
+    token = userTokenService.buscarToken()
+  }
 
   const novaReq = req.clone({
     setHeaders: {
-      'X-teste': 'teste de cab'
+      'Authorization': `Bearer ${token}`
     }
   });
-
-  //return next(novaReq);
-  const router = inject(Router);
 
   return next(novaReq).pipe(
     catchError((error: HttpErrorResponse) => {
