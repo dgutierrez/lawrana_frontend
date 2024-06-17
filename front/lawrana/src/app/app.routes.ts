@@ -11,6 +11,7 @@ import { EditarUserAssistenteComponent } from './pages/usuario/assistentes/edita
 import { CriarUserAssistenteComponent } from './pages/usuario/assistentes/criar-user-assistente/criar-user-assistente.component';
 import { ListarUserChatComponent } from './pages/usuario/chats/listar-user-chat/listar-user-chat.component';
 import { NavigatorUserChatComponent } from './pages/usuario/chats/navigator-user-chat/navigator-user-chat.component';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -32,17 +33,21 @@ export const routes: Routes = [
   {
     path: 'usuario',
     component: UserHomeComponent,
+    canActivate: [authGuard],
     children: [
       { path: 'chats',
         component: NavigatorUserChatComponent,
+        canActivate: [authGuard],
         children: [
-          { path: 'chat', component: UserChatComponent }
+          { path: 'chat',
+            component: UserChatComponent,
+            canActivate: [authGuard] }
         ]
       },
 
-      { path: 'assistentes', component: ListarUserAssistenteComponent },
-      { path: 'assistentes/editarAssistente/:id', component: EditarUserAssistenteComponent },
-      { path: 'assistentes/criarAssistente', component: CriarUserAssistenteComponent },
+      { path: 'assistentes', component: ListarUserAssistenteComponent, canActivate: [authGuard] },
+      { path: 'assistentes/editarAssistente/:id', component: EditarUserAssistenteComponent, canActivate: [authGuard] },
+      { path: 'assistentes/criarAssistente', component: CriarUserAssistenteComponent, canActivate: [authGuard] },
     ]
   }
 ];

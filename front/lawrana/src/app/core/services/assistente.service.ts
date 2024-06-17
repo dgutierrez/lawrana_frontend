@@ -1,10 +1,11 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Assistente } from '../../interfaces/assistente';
 import { Observable, tap, map, catchError, throwError } from 'rxjs';
 import { UsuarioService } from './usuario.service';
 import { UsuarioTokenService } from './usuario-token.service';
+import { Router } from '@angular/router';
 
 interface ListaAssistentesResponse {
   data: Assistente[];
@@ -22,7 +23,8 @@ export class AssistenteService implements OnInit {
   private apiUrl = environment.apiUrl;
   private token: string = ''
   constructor(private http: HttpClient,
-    private userTokenService: UsuarioTokenService
+    private userTokenService: UsuarioTokenService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {

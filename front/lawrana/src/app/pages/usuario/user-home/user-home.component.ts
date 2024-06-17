@@ -42,11 +42,6 @@ export class UserHomeComponent implements OnInit {
   }
 
   ngOnInit():void {
-    if(!this.userService.estaLogado()){
-      this.router.navigate(['/usuario/login']);
-    }else{
-      //this.userService.decodificarJwt().su
-      this.nomeUsuario = 'Ususario logado';
-    }
+
   }
 }
