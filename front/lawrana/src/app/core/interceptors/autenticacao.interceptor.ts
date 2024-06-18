@@ -11,19 +11,29 @@ export const autenticacaoInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   let token: string = ''
 
-  if (req.url.includes('empresa')) {
-    //console.log('A URL contém a palavra "empresa".');
-    // Faça algo quando a URL contém "empresa"
+  if (req.url.includes('login')) {
+
   } else {
-    //console.log('A URL não contém a palavra "empresa".');
-    token = userTokenService.buscarToken()
+    if (req.url.includes('empresa')) {
+      //console.log('A URL contém a palavra "empresa".');
+      // Faça algo quando a URL contém "empresa"
+    } else {
+      //console.log('A URL não contém a palavra "empresa".');
+      token = userTokenService.buscarToken()
+    }
   }
 
-  const novaReq = req.clone({
-    setHeaders: {
-      'Authorization': `Bearer ${token}`
-    }
-  });
+  let novaReq: HttpRequest<unknown>;
+
+  if(token !== ''){
+      novaReq = req.clone({
+      setHeaders: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+  } else {
+    novaReq = req.clone()
+  }
 
   return next(novaReq).pipe(
     catchError((error: HttpErrorResponse) => {

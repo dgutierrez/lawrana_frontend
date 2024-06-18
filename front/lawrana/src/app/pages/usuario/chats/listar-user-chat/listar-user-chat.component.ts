@@ -1,4 +1,4 @@
-import { Component, Input, signal, computed } from '@angular/core';
+import { Component, Input, signal, computed, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { NgFor, NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -10,6 +10,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Chat } from '../../../../interfaces/chat';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { ChatService } from '../../../../core/services/chat.service';
 
 @Component({
   selector: 'app-listar-user-chat',
@@ -18,7 +19,7 @@ import { MatListModule } from '@angular/material/list';
   templateUrl: './listar-user-chat.component.html',
   styleUrl: './listar-user-chat.component.css'
 })
-export class ListarUserChatComponent {
+export class ListarUserChatComponent implements OnInit {
   @Input() chatItems = signal<ChatItem[]>([
     {
       icon: 'dashboard',
@@ -34,22 +35,21 @@ export class ListarUserChatComponent {
     },
   ])
 
+  chats : Chat[] = []
 
+  constructor(private chatService: ChatService){
 
-  chats : Chat[] = [{
-    codigo_assistente: '',
-    criado_em: '12/06/2024',
-    foto_assistente: 'foto',
-    nome_chat: 'Nome Chat Mock',
-    nome_assistente: 'Nome assistente mock'
-  },
-  {
-    codigo_assistente: '',
-    criado_em: '11/06/2024',
-    foto_assistente: 'foto',
-    nome_chat: 'Nome Chat Mock 2',
-    nome_assistente: 'Nome assistente mock 2'
-  }]
+  }
+
+  ngOnInit(): void {
+    this.listarChats();
+  }
+
+  listarChats(){
+    this.chatService.listarChats().subscribe((response: Chat[]) => {
+      this.chats = response;
+    });
+  }
 
   sideNavWidth = computed(() =>
     '250px'

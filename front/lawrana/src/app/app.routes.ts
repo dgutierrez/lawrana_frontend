@@ -39,7 +39,7 @@ export const routes: Routes = [
         component: NavigatorUserChatComponent,
         canActivate: [authGuard],
         children: [
-          { path: 'chat',
+          { path: 'chat/:id',
             component: UserChatComponent,
             canActivate: [authGuard] }
         ]
