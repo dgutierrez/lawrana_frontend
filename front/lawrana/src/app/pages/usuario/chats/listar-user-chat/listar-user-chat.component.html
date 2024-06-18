@@ -1,8 +1,16 @@
 <h3>Chats</h3>
 <mat-nav-list>
-  <a mat-list-item *ngFor="let item of chats" [routerLink]="'chat/' + item.codigo_chat">
+  <a mat-list-item *ngFor="let item of chats" (click)="abrirChat(item.codigo_chat!)" >
     <img [src]="item.foto_assistente" alt="assistente" class="custom-icon">
     <span >{{ item.nome_chat }} </span>
     <span >{{ item.criado_em }} </span>
   </a>
 </mat-nav-list>
+
+
+<!-- <a mat-list-item *ngFor="let item of chats" [routerLink]="'chat/' + item.codigo_chat" >
+    <img [src]="item.foto_assistente" alt="assistente" class="custom-icon">
+    <span >{{ item.nome_chat }} </span>
+    <span >{{ item.criado_em }} </span>
+  </a>
+  -->

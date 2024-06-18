@@ -56,11 +56,35 @@ button:hover {
   background-color: #0056b3;
 }
 
-.acoes {
+/*.acoes {
   display: flex;
   flex-wrap: wrap;
-  justify-content: right;
+  justify-content: left;
   row-gap: 16px;
   gap: 16px;
   margin-bottom: 40px;
+
+  button{
+    justify-content: right;
+  }
+}*/
+
+.acoes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  figure, h3 {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+
+  figure {
+    margin-right: 8px;
+  }
+
+  button {
+    margin-left: auto;
+  }
 }

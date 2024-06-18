@@ -1,3 +1,5 @@
+import { Mensagem } from "./mensagem"
+
 export interface Chat {
   codigo_chat?: string
   codigo_assistente: string
@@ -5,4 +7,5 @@ export interface Chat {
   criado_em: string
   nome_assistente: string
   foto_assistente: string
+  mensagens?: Mensagem[]
 }

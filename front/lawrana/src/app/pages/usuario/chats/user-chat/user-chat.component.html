@@ -1,12 +1,16 @@
 <mat-card-actions class="acoes">
+  <figure>
+    <img height="32px" width="32px" [src]="chat.foto_assistente" alt="assistente">
+  </figure>
+  <h3>{{ chat.nome_assistente }} - {{ chat.nome_chat }}</h3>
   <button mat-flat-button color="warn" routerLink="/usuario/assistentes/criarAssistente">
     <mat-icon>delete</mat-icon>
     Apagar chat
   </button>
 </mat-card-actions>
 <div class="chat-container">
-  <div *ngFor="let message of mensagens" [ngClass]="{'user-message': message.tipo_mensagem === 'usuario', 'assistant-message': message.tipo_mensagem === 'assistente'}">
-    {{ message.texto_mensagem }}
+  <div *ngFor="let message of chat.mensagens" [ngClass]="{'user-message': message.tipo_mensagem === 'Usuario', 'assistant-message': message.tipo_mensagem === 'Assistente'}">
+    {{ message.mensagem }}
   </div>
 </div>
 <div class="input-container">

@@ -1,7 +1,7 @@
 import { Component, Input, signal, computed, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { NgFor, NgIf } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ChatItem, UserChatComponent } from '../user-chat/user-chat.component';
@@ -37,7 +37,8 @@ export class ListarUserChatComponent implements OnInit {
 
   chats : Chat[] = []
 
-  constructor(private chatService: ChatService){
+  constructor(private chatService: ChatService,
+    private router: Router){
 
   }
 
@@ -49,6 +50,11 @@ export class ListarUserChatComponent implements OnInit {
     this.chatService.listarChats().subscribe((response: Chat[]) => {
       this.chats = response;
     });
+  }
+
+  abrirChat(id: string){
+    console.log('abrindo chat: ' + id)
+    this.router.navigate([`usuario/chats/chat/${id}`]);
   }
 
   sideNavWidth = computed(() =>
