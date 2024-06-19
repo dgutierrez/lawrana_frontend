@@ -1,3 +1,4 @@
+import { Mensagem } from './../../../../interfaces/mensagem';
 import { Component, Input, NgModule, OnInit } from '@angular/core';
 import { Chat } from '../../../../interfaces/chat';
 import { MatCardModule } from '@angular/material/card';
@@ -7,10 +8,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { Mensagem } from '../../../../interfaces/mensagem';
 import { NgFor } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { ChatService } from '../../../../core/services/chat.service';
+import { FormsModule } from '@angular/forms';
 
 export type ChatItem = {
   icon: string;
@@ -23,7 +24,7 @@ export type ChatItem = {
 @Component({
   selector: 'app-user-chat',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule, MatTooltipModule, NgFor, CommonModule],
+  imports: [MatCardModule, MatButtonModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule, MatTooltipModule, NgFor, CommonModule, FormsModule],
   templateUrl: './user-chat.component.html',
   styleUrl: './user-chat.component.scss'
 })
@@ -39,6 +40,8 @@ export class UserChatComponent implements OnInit {
 
   chatId: string = ''
   mensagens: Mensagem[] = []
+
+  mensagem: string = ''
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -67,7 +70,32 @@ export class UserChatComponent implements OnInit {
   newMessage: string = '';
 
   sendMessage() {
-    'ok'
+
+    if (!this.chat.mensagens) {
+      this.chat.mensagens = [];
+    }
+
+    let agora = new Date();
+
+    let novaMsg: Mensagem = {
+      codigo_mensagem: '1',
+      data_mensagem: agora.toISOString(),
+      mensagem: this.mensagem,
+      tipo_mensagem: 'Usuario'
+    }
+
+    this.chat.mensagens!.push(novaMsg);
+
+    this.chatService.enviarMensagem(this.chat.codigo_chat!, this.mensagem).subscribe({
+      next: (value : Mensagem) => {
+        console.log('mensagem criada', value);
+        this.chat.mensagens!.push(value)
+      },
+      error: (err) => {
+        console.log('exception...', err);
+      }
+    });
+    this.mensagem = ''
   }
 
   buscarChat(){

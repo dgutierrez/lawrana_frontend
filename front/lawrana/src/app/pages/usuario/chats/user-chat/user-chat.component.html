@@ -14,6 +14,6 @@
   </div>
 </div>
 <div class="input-container">
-  <input  placeholder="Digite sua mensagem..."  />
+  <input [(ngModel)]="mensagem" placeholder="Digite sua mensagem..."  />
   <button (click)="sendMessage()">Enviar</button>
 </div>

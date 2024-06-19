@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, tap } from 'rxjs';
 import { Chat } from '../../interfaces/chat';
+import { Mensagem } from '../../interfaces/mensagem';
 
 interface ListaChatsResponse {
   data: Chat[]
@@ -10,6 +11,10 @@ interface ListaChatsResponse {
 
 interface DetalheChatsResponse {
   data: Chat
+}
+
+interface MensagemChatsResponse {
+  data: Mensagem
 }
 
 @Injectable({
@@ -59,6 +64,30 @@ export class ChatService {
         } else {
           console.error('Formato de resposta inesperado:', response);
           throw new Error('Formato de resposta inesperado ou chat não encontrado');
+        }
+      })
+    );
+  }
+
+  enviarMensagem(idChat: string, mensagem: string): Observable<Mensagem>{
+    const post = {
+      codigo_chat: idChat,
+      mensagem: mensagem
+    }
+
+    return this.http.post<MensagemChatsResponse>(`${this.apiUrl}/mensagem`, post, { observe: 'response' })
+    .pipe(
+      tap(response => {
+        console.log('Response completo:', response);
+      }),
+      map(response => {
+        if (response.body && response.body.data) {
+          const chat = response.body.data;
+          console.log('mensagem mapeado:', chat);
+          return chat;
+        } else {
+          console.error('Formato de resposta inesperado:', response);
+          throw new Error('Formato de resposta inesperado ou mensagem não encontrado');
         }
       })
     );
