@@ -2,12 +2,14 @@ import { HttpErrorResponse, HttpEvent, HttpEventType, HttpHandlerFn, HttpHeaders
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, catchError, tap, throwError } from 'rxjs';
-import { UsuarioTokenService } from '../services/usuario-token.service';
+import { EmpresaService } from '../services/empresa.service';
+import { UsuarioService } from '../services/usuario.service';
 
 export const autenticacaoInterceptor: HttpInterceptorFn = (req, next) => {
   //console.log('interceptando3')
 
-  const userTokenService = inject(UsuarioTokenService);
+  const userService = inject(UsuarioService);
+  const empresaService = inject(EmpresaService);
   const router = inject(Router);
   let token: string = ''
 
@@ -17,9 +19,10 @@ export const autenticacaoInterceptor: HttpInterceptorFn = (req, next) => {
     if (req.url.includes('empresa')) {
       //console.log('A URL contém a palavra "empresa".');
       // Faça algo quando a URL contém "empresa"
+      token = empresaService.buscarToken();
     } else {
       //console.log('A URL não contém a palavra "empresa".');
-      token = userTokenService.buscarToken()
+      token = userService.buscarToken()
     }
   }
 

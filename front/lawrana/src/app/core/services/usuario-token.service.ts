@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-const KEY = 'lawrana-user-token'
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,23 +9,23 @@ export class UsuarioTokenService {
 
   constructor() { }
 
-  salvarToken(token: string) {
-    return localStorage.setItem(KEY, token);
+  salvarToken(token: string, key: string) {
+    return localStorage.setItem(key, token);
   }
 
-  excluirToken() {
-    localStorage.removeItem(KEY);
+  excluirToken(key: string) {
+    localStorage.removeItem(key);
   }
 
-  buscarToken() {
+  buscarToken(key: string) {
     if (typeof localStorage !== 'undefined') {
-      console.log(`buscando token: ${localStorage.getItem(KEY)}`);
-      return localStorage.getItem(KEY) ?? "";
+      console.log(`buscando token: ${localStorage.getItem(key)}`);
+      return localStorage.getItem(key) ?? "";
     }
     return "";
   }
 
-  possuiToken() {
-    return !!this.buscarToken();
+  possuiToken(key: string) {
+    return !!this.buscarToken(key);
   }
 }

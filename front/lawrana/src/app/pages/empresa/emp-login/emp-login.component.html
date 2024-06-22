@@ -5,17 +5,25 @@
     </div>
     <div class="modal-right">
       <h3>Empresa Login</h3>
-      <form>
+      <form [formGroup]="loginForm">
         <div class="form-group">
-          <label for="username">Usuário:</label>
-          <input type="text" id="username" name="username" required>
+          <mat-form-field appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input formControlName="email" matInput type="email" placeholder="Informe seu e-mail">
+            <mat-error *ngIf="loginForm.get('email')?.errors?.['required']">E-mail obrigatório</mat-error>
+            <mat-error *ngIf="loginForm.get('email')?.errors?.['email']">E-mail inválido</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input formControlName="senha" matInput type="password" placeholder="Informe sua senha">
+            <mat-error *ngIf="loginForm.get('senha')?.errors?.['required']">Senha obrigatória</mat-error>
+          </mat-form-field>
         </div>
-        <div class="form-group">
-          <label for="password">Senha:</label>
-          <input type="password" id="password" name="password" required>
-        </div>
-        <button (click)="empresaLogin()">Entrar</button>
+        <button [disabled]="loginForm.invalid" mat-flat-button color="primary" (click)="login()">
+          Ok
+        </button>
       </form>
     </div>
   </div>
 </div>
+
