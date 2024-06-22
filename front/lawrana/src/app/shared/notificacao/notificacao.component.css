@@ -1,0 +1,14 @@
+.success-mat-snack-bar-container {
+  background-color: #4caf50; /* Verde para sucesso */
+  color: #fff;
+}
+
+.error-mat-snack-bar-container {
+  background-color: #f44336; /* Vermelho para erro */
+  color: #fff;
+}
+
+.success {
+  background-color: #4caf50; /* Verde para sucesso */
+  color: #fff;
+}

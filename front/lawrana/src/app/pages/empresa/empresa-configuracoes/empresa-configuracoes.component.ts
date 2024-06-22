@@ -7,11 +7,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { NotificacaoService } from '../../../core/services/notificacao.service';
 
 @Component({
   selector: 'app-empresa-configuracoes',
   standalone: true,
-  imports: [MatSlideToggleModule, FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule],
+  imports: [MatSlideToggleModule, FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatSnackBarModule],
   templateUrl: './empresa-configuracoes.component.html',
   styleUrl: './empresa-configuracoes.component.css'
 })
@@ -34,7 +36,9 @@ export class EmpresaConfiguracoesComponent implements OnInit {
     }
   }
 
-  constructor(private empresaService: EmpresaService){
+  constructor(private empresaService: EmpresaService,
+            private snackBar: MatSnackBar,
+            private notificador: NotificacaoService){
 
   }
 
@@ -46,8 +50,16 @@ export class EmpresaConfiguracoesComponent implements OnInit {
   }
 
   alterarConfiguracaoEmpresa(){
-    this.empresaService.altearConfigEmpresa(this.empresa.configuracoes).subscribe((response) => {
-      console.log('configuração alterada');
+    this.empresaService.altearConfigEmpresa(this.empresa.configuracoes).subscribe({
+      next: (value) => {
+        this.notificador.exibirNorificacao('Configurações atualizadas com sucesso!', 'Fechar', 'success')
+      },
+      error: (err) => {
+        console.log('exception...', err);
+        this.notificador.exibirNorificacao('Erro ao atualizar as configurações.', 'Fechar', 'error')
+      }
     });
+
+
   }
 }

@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
 import { EmpresaService } from '../../../core/services/empresa.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificacaoService } from '../../../core/services/notificacao.service';
 
 @Component({
   selector: 'app-empresa-perfil',
@@ -35,7 +37,8 @@ export class EmpresaPerfilComponent implements OnInit {
     }
   }
 
-  constructor(private empresaService: EmpresaService){
+  constructor(private empresaService: EmpresaService,
+    private notificador: NotificacaoService){
 
   }
 
@@ -75,8 +78,14 @@ export class EmpresaPerfilComponent implements OnInit {
   }
 
   alterarEmpresa(){
-    this.empresaService.altearEmpresa(this.empresa).subscribe((response) => {
-      console.log('empresa alterada');
+    this.empresaService.altearEmpresa(this.empresa).subscribe({
+      next: (value) => {
+        this.notificador.exibirNorificacao('Perfil atualizado com sucesso!', 'Fechar', 'success')
+      },
+      error: (err) => {
+        console.log('exception...', err);
+        this.notificador.exibirNorificacao('Erro ao atualizar o perfil.', 'Fechar', 'error')
+      }
     });
   }
 }
