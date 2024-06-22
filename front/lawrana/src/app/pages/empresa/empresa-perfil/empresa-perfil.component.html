@@ -1,0 +1,37 @@
+<div>
+  <form>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Nome</mat-label>
+      <input matInput placeholder="Nome" [(ngModel)]="empresa.nome" name="nome" readonly>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>E-mail</mat-label>
+      <input matInput placeholder="email" [(ngModel)]="empresa.email" name="email" readonly>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Cadastro</mat-label>
+      <input matInput placeholder="data_cadastro" [(ngModel)]="empresa.data_cadastro" name="data_cadastro" readonly>
+    </mat-form-field>
+    <div class="div-foto">
+      <img width="200" height="200" *ngIf="empresa.foto" [src]="empresa.foto" alt="Imagem empresa">
+      <button mat-fab color="primary" (click)="fileInput.click()" aria-label="Example icon button with a delete icon">
+        <mat-icon>camera</mat-icon>
+      </button>
+
+      <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
+    </div>
+    <div class="div-foto-login">
+      <img width="200" height="200" *ngIf="empresa.foto_login" [src]="empresa.foto_login" alt="Imagem login empresa">
+      <button mat-fab color="primary" (click)="fileInputLogin.click()" aria-label="Example icon button with a delete icon">
+        <mat-icon>camera</mat-icon>
+      </button>
+
+      <input type="file" #fileInputLogin (change)="onFileSelectedLogin($event)" style="display: none;">
+    </div>
+    <div class="acoes">
+      <button mat-flat-button color="primary" (click)="alterarEmpresa()">Salvar</button>
+    </div>
+  </form>
+</div>
