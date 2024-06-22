@@ -5,12 +5,13 @@
     <div class="links-toolbar">
       <button mat-button (click)="sobre()">Sobre</button>
 
-      <ng-container *ngIf="user$ | async as usuario, else login">
+      <ng-container *ngIf="isUserOrEmpresaPresent$ | async; else login">
         <a [routerLink]="['/routePath']" routerLinkActive="router-link-active" >
           <img width="48px" height="32px" src="assets/imagens/user-icon.png">
         </a>
         <button mat-stroked-button (click)="logout()">Sair</button>
       </ng-container>
+
       <ng-template #login>
         <button mat-raised-button color="primary" (click)="empresaLogin()">Login Empresa</button>
         <button mat-stroked-button (click)="usuarioLogin()">Login usuario</button>

@@ -12,6 +12,7 @@ import { CriarUserAssistenteComponent } from './pages/usuario/assistentes/criar-
 import { ListarUserChatComponent } from './pages/usuario/chats/listar-user-chat/listar-user-chat.component';
 import { NavigatorUserChatComponent } from './pages/usuario/chats/navigator-user-chat/navigator-user-chat.component';
 import { authGuard } from './core/guards/auth.guard';
+import { empAuthGuard } from './core/guards/empAuth.guard';
 
 export const routes: Routes = [
   {
@@ -24,7 +25,8 @@ export const routes: Routes = [
   },
   {
     path: 'empresa',
-    component: EmpHomeComponent
+    component: EmpHomeComponent,
+    canActivate: [empAuthGuard]
   },
   {
     path: 'usuario/login',
