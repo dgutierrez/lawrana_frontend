@@ -1,3 +1,4 @@
+import { EmpresaConfig } from './../../../interfaces/empresaConfig';
 import { Component, OnInit } from '@angular/core';
 import { Empresa } from '../../../interfaces/empresa';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -5,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
-import { ActivatedRoute, Route } from '@angular/router';
 import { EmpresaService } from '../../../core/services/empresa.service';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -23,11 +23,19 @@ export class EmpresaPerfilComponent implements OnInit {
     foto: '',
     foto_login: '',
     nome: '',
-    user: ''
+    user: '',
+    configuracoes:  {
+      claude_token: '',
+      disponibiliza_pasta_empresa: false,
+      disponibiliza_token_empresa: false,
+      gemini_token: '',
+      openai_token: '',
+      tamanho_armazenamento: 1,
+      url_status_usuario: ''
+    }
   }
 
-  constructor(private route: ActivatedRoute,
-    private empresaService: EmpresaService){
+  constructor(private empresaService: EmpresaService){
 
   }
 

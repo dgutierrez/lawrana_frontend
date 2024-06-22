@@ -1,0 +1,41 @@
+<h3>Configurações</h3>
+<div>
+  <form>
+    <mat-slide-toggle [(ngModel)]="empresa.configuracoes.disponibiliza_pasta_empresa" name="pasta_empresa">Pasta empresa</mat-slide-toggle>
+
+    <mat-slide-toggle [(ngModel)]="empresa.configuracoes.disponibiliza_token_empresa" name="token_empresa">Token empresa</mat-slide-toggle>
+    <p></p>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Openai</mat-label>
+      <input matInput placeholder="OpenAi token" [(ngModel)]="empresa.configuracoes.openai_token" name="openai">
+    </mat-form-field>
+    <p></p>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Gemini</mat-label>
+      <input matInput placeholder="Gemini token" [(ngModel)]="empresa.configuracoes.gemini_token" name="gemini">
+    </mat-form-field>
+    <p></p>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Claude</mat-label>
+      <input matInput placeholder="Claude token" [(ngModel)]="empresa.configuracoes.claude_token" name="claude">
+    </mat-form-field>
+    <p></p>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Url SSO</mat-label>
+      <input matInput placeholder="https://" [(ngModel)]="empresa.configuracoes.url_status_usuario" name="url_sso">
+    </mat-form-field>
+    <p></p>
+    <mat-form-field appearance="outline">
+      <mat-label>Armazenamento</mat-label>
+      <mat-select [(ngModel)]="empresa.configuracoes.tamanho_armazenamento" name="armazenamento">
+        <mat-option value="1">1 GB</mat-option>
+        <mat-option value="2">2 GB</mat-option>
+        <mat-option value="5">5 GB</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="acoes">
+      <button mat-flat-button color="primary" (click)="alterarConfiguracaoEmpresa()">Salvar</button>
+    </div>
+  </form>
+</div>
+

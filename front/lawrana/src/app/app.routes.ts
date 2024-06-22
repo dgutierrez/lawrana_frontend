@@ -12,6 +12,7 @@ import { NavigatorUserChatComponent } from './pages/usuario/chats/navigator-user
 import { authGuard } from './core/guards/auth.guard';
 import { empAuthGuard } from './core/guards/empAuth.guard';
 import { EmpresaPerfilComponent } from './pages/empresa/empresa-perfil/empresa-perfil.component';
+import { EmpresaConfiguracoesComponent } from './pages/empresa/empresa-configuracoes/empresa-configuracoes.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,11 @@ export const routes: Routes = [
       {
         path: 'perfil',
         component: EmpresaPerfilComponent,
+        canActivate: [empAuthGuard]
+      },
+      {
+        path: 'configuracoes',
+        component: EmpresaConfiguracoesComponent,
         canActivate: [empAuthGuard]
       }
     ]

@@ -18,6 +18,11 @@ export class EmpHomeComponent {
       route: 'perfil'
     },
     {
+      icon: 'toggle_on',
+      label: 'Configurações',
+      route: 'configuracoes'
+    },
+    {
       icon: 'supervisor_account',
       label: 'Usuarios',
       route: 'usuarios'

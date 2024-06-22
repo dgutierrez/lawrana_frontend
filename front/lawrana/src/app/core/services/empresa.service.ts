@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'r
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { EmpresaToken } from '../../interfaces/empresaToken';
+import { EmpresaConfig } from '../../interfaces/empresaConfig';
 
 const KEY = 'lawrana-emp-token'
 
@@ -95,5 +96,9 @@ export class EmpresaService {
     })
 
     return this.http.put(`${this.apiUrl}/empresa`, emp);
+  }
+
+  altearConfigEmpresa(empConfig: EmpresaConfig): Observable<any> {
+    return this.http.put(`${this.apiUrl}/empresa/configuracao`, empConfig);
   }
 }
