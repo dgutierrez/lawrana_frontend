@@ -1,0 +1,31 @@
+.usuarios-container {
+  background-color: #f0f0f0; /* Cinza claro como cor de fundo */
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 16px; /* Espaçamento interno */
+  border: 1px solid #dcdcdc; /* Borda cinza */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f5f5f5;
+}
+
+td:last-child {
+  text-align: left;
+}
+
+.fab-button {
+  margin: 0;
+}
