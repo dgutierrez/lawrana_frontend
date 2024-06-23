@@ -1,0 +1,25 @@
+<h3>Novo usuario</h3>
+<mat-form-field class="input_container" appearance="outline" [style.width.px]=500>
+  <mat-label>Nome</mat-label>
+  <input matInput placeholder="Nome" [(ngModel)]="usuario.nome" name="nome">
+</mat-form-field>
+<mat-form-field class="input_container" appearance="outline" [style.width.px]=500>
+  <mat-label>E-mail</mat-label>
+  <input matInput placeholder="Email" [(ngModel)]="usuario.email" name="email">
+</mat-form-field>
+<mat-form-field class="input_container" appearance="outline" [style.width.px]=500>
+  <mat-label>Codigo integração</mat-label>
+  <input matInput placeholder="Codigo integração" [(ngModel)]="usuario.codigo_usuario_integracao" name="codigo_integracao">
+</mat-form-field>
+<mat-form-field class="input_container" appearance="outline" [style.width.px]=500>
+  <mat-label>Senha</mat-label>
+  <input matInput type="password" placeholder="Senha" [(ngModel)]="usuario.senha" name="senha">
+</mat-form-field>
+<mat-form-field class="input_container" appearance="outline" [style.width.px]=500>
+  <mat-label>Confirma senha</mat-label>
+  <input matInput type="password" placeholder="Confirma senha" [(ngModel)]="usuario.confirma_senha" name="confirma_senha">
+</mat-form-field>
+<div class="acoes">
+  <button mat-flat-button color="primary" (click)="criarUsuario()">Salvar</button>
+  <button routerLink="/empresa/usuarios" mat-flat-button color="warn">Cancelar</button>
+</div>

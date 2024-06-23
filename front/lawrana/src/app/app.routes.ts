@@ -14,6 +14,7 @@ import { empAuthGuard } from './core/guards/empAuth.guard';
 import { EmpresaPerfilComponent } from './pages/empresa/empresa-perfil/empresa-perfil.component';
 import { EmpresaConfiguracoesComponent } from './pages/empresa/empresa-configuracoes/empresa-configuracoes.component';
 import { EmpresaUsuariosComponent } from './pages/empresa/empresa-usuarios/empresa-usuarios.component';
+import { EmpresaCriarUsuarioComponent } from './pages/empresa/empresa-criar-usuario/empresa-criar-usuario.component';
 
 export const routes: Routes = [
   {
@@ -42,6 +43,11 @@ export const routes: Routes = [
       {
         path: 'usuarios',
         component: EmpresaUsuariosComponent,
+        canActivate: [empAuthGuard]
+      },
+      {
+        path: 'usuarios/novo',
+        component: EmpresaCriarUsuarioComponent,
         canActivate: [empAuthGuard]
       }
     ]

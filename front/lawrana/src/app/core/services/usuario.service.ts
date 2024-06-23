@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'r
 import { jwtDecode } from "jwt-decode";
 import { UsuarioToken } from '../../interfaces/usuarioToken';
 import { HttpClient } from '@angular/common/http';
-import { Usuario } from '../../interfaces/usuario';
+import { NovoUsuario, Usuario } from '../../interfaces/usuario';
 import { environment } from '../../environments/environment';
 
 const KEY = 'lawrana-user-token'
@@ -89,6 +89,20 @@ export class UsuarioService {
 
       catchError(error => {
         console.error('Erro ao deletar usuarios:', error);
+        return throwError(error);
+      })
+    );
+  }
+
+  criarUsuario(user: NovoUsuario): Observable<any> {
+    return this.http.post(`${this.apiUrl}/empresa/usuario`, user, { observe: 'response' })
+    .pipe(
+      tap(response => {
+        console.log('Response completo:', response);
+      }),
+
+      catchError(error => {
+        console.error('Erro ao criar usuario:', error);
         return throwError(error);
       })
     );

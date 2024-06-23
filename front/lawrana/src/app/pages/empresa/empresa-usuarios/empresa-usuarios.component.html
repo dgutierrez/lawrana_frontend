@@ -1,4 +1,8 @@
 <h3>Usuarios</h3>
+<button mat-flat-button color="primary" routerLink="/empresa/usuarios/novo">
+  <mat-icon>add</mat-icon>
+  Novo usuario
+</button>
 <div class="usuarios-container">
   <div *ngIf="usuarios.length > 0; else semUsuarios">
     <table>

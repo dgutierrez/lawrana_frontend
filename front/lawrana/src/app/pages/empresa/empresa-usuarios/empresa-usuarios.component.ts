@@ -6,11 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalExclusaoComponent } from '../../../shared/modal-exclusao/modal-exclusao.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-empresa-usuarios',
   standalone: true,
-  imports: [NgFor, NgIf, MatIconModule, MatButtonModule],
+  imports: [NgFor, NgIf, MatIconModule, MatButtonModule, RouterModule],
   templateUrl: './empresa-usuarios.component.html',
   styleUrl: './empresa-usuarios.component.css'
 })
