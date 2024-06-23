@@ -79,4 +79,18 @@ export class UsuarioService {
       })
     );
   }
+
+  deletarUsuario(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/empresa/usuario/${id}`, { observe: 'response' })
+    .pipe(
+      tap(response => {
+        console.log('Response completo:', response);
+      }),
+
+      catchError(error => {
+        console.error('Erro ao deletar usuarios:', error);
+        return throwError(error);
+      })
+    );
+  }
 }

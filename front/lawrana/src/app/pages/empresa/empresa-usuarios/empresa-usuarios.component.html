@@ -18,7 +18,7 @@
           <td>{{ usuario.codigo_usuario_integracao }}</td>
           <td>{{ usuario.data_cadastro }}</td>
           <td>
-            <button mat-mini-fab color="warn" matTooltip="Deletar usuario" class="fab-button" aria-label="Deletar" (click)="openConfirmDialog()">
+            <button mat-mini-fab color="warn" matTooltip="Deletar usuario" class="fab-button" aria-label="Deletar" (click)="openConfirmDialog(usuario.codigo_usuario)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>

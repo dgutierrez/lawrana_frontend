@@ -23,22 +23,26 @@ export class EmpresaUsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.carregarLista();
+  }
+
+  carregarLista() {
     this.userService.listarUsuarios().subscribe((response: Usuario[]) => {
       this.usuarios = response;
     })
   }
 
-  openConfirmDialog(): void {
+  openConfirmDialog(id: string): void {
     const dialogRef = this.dialog.open(ModalExclusaoComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Código para excluir o item
         console.log('Usuário confirmou a exclusão');
-        /*this.assistenteService.deletarAssistente(this.assistente!.codigo_assistente!).subscribe((response) =>
+        this.userService.deletarUsuario(id).subscribe((response) =>
         {
-          this.deletouAssistente.emit();
-        });*/
+          this.carregarLista();
+        });
       } else {
         console.log('Usuário cancelou a exclusão');
       }

@@ -4,6 +4,7 @@
   padding: 16px; /* Espaçamento interno */
   border: 1px solid #dcdcdc; /* Borda cinza */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  width: 95%;
 }
 
 table {
