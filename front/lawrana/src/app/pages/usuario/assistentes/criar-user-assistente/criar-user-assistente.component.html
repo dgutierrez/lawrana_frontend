@@ -11,6 +11,15 @@
     <mat-label>Nome</mat-label>
     <input matInput placeholder="Nome" [(ngModel)]="assistente.nome" >
   </mat-form-field>
+  <p></p>
+  <mat-form-field appearance="outline">
+    <mat-label>Modelo</mat-label>
+    <mat-select [(ngModel)]="assistente.nome_modelo">
+      <mat-option value="OpenAi">OpenAi</mat-option>
+      <mat-option value="Gemini">Gemini</mat-option>
+      <mat-option value="Claude">Claude</mat-option>
+    </mat-select>
+  </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Escopo</mat-label>
     <mat-select [(ngModel)]="assistente.escopo">
@@ -18,7 +27,7 @@
       <mat-option value="Privado">Privado</mat-option>
     </mat-select>
   </mat-form-field>
-<p></p>
+  <p></p>
   <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
     <mat-label>Descrição</mat-label>
     <input matInput placeholder="Descrição" [(ngModel)]="assistente.descricao" >

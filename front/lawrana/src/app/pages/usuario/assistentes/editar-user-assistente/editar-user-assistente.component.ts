@@ -26,6 +26,7 @@ export class EditarUserAssistenteComponent implements OnInit {
     editavel: true,
     escopo: '',
     nome: '',
+    nome_modelo: '',
     codigo_assistente: '',
     foto: ''
   }

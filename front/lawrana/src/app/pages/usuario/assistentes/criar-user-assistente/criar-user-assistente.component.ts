@@ -24,6 +24,7 @@ export class CriarUserAssistenteComponent {
     editavel: true,
     escopo: 'Privado',
     nome: 'novo assistente',
+    nome_modelo: 'Gemini',
     codigo_assistente: 'abc-123',
     foto: ''
   }

@@ -26,6 +26,7 @@ export class UserAssistantesComponent {
     editavel: false,
     escopo: 'Privado',
     nome: 'teste',
+    nome_modelo: 'OpenAi',
     codigo_assistente: '',
     foto: ''
   }
