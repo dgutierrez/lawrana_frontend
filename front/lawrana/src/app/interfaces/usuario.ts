@@ -13,3 +13,9 @@ export interface NovoUsuario {
   senha: string,
   confirma_senha: string
 }
+
+export interface UsuarioPaginador {
+  qtd_usuarios: number,
+  qtd_paginas: number,
+  usuarios: Usuario[]
+}

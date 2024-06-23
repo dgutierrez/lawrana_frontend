@@ -4,13 +4,13 @@ import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'r
 import { jwtDecode } from "jwt-decode";
 import { UsuarioToken } from '../../interfaces/usuarioToken';
 import { HttpClient } from '@angular/common/http';
-import { NovoUsuario, Usuario } from '../../interfaces/usuario';
+import { NovoUsuario, Usuario, UsuarioPaginador } from '../../interfaces/usuario';
 import { environment } from '../../environments/environment';
 
 const KEY = 'lawrana-user-token'
 
 interface ListaEmpresaResponse {
-  data: Usuario[];
+  data: UsuarioPaginador;
 }
 
 @Injectable({
@@ -57,8 +57,8 @@ export class UsuarioService {
     return this.usuarioTokenService.buscarToken(KEY);
   }
 
-  listarUsuarios(): Observable<Usuario[]> {
-    return this.http.get<ListaEmpresaResponse>(`${this.apiUrl}/empresa/usuario`, { observe: 'response' })
+  listarUsuarios(pagina: number, registros: number): Observable<UsuarioPaginador> {
+    return this.http.get<ListaEmpresaResponse>(`${this.apiUrl}/empresa/usuario?pagina=${pagina}&registros=${registros}`, { observe: 'response' })
     .pipe(
       tap(response => {
         console.log('Response completo:', response);

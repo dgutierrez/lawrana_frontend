@@ -4,7 +4,7 @@
   Novo usuario
 </button>
 <div class="usuarios-container">
-  <div *ngIf="usuarios.length > 0; else semUsuarios">
+  <div *ngIf="usuariosPaginado.usuarios; else semUsuarios">
     <table>
       <thead>
         <tr>
@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let usuario of usuarios">
+        <tr *ngFor="let usuario of usuariosPaginado.usuarios">
           <td>{{ usuario.nome }}</td>
           <td>{{ usuario.email }}</td>
           <td>{{ usuario.codigo_usuario_integracao }}</td>
@@ -29,8 +29,16 @@
         </tr>
       </tbody>
     </table>
+
   </div>
 </div>
+
+<mat-paginator [length]="usuariosPaginado.qtd_usuarios"
+              (page)="handlePageEvent($event)"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              aria-label="Select page">
+    </mat-paginator>
 
 <ng-template #semUsuarios>
   <div class="ff-inter sem-usuarios">
