@@ -134,4 +134,21 @@ export class UsuarioService {
       })
     );
   }
+
+  alterarPerfilUsuario(perfil: PerfilUsuario): Observable<any>{
+    const p ={
+      foto: perfil.foto
+    }
+    return this.http.put(`${this.apiUrl}/usuario/perfil`, p, { observe: 'response' })
+    .pipe(
+      tap(response => {
+        console.log('Response completo:', response);
+      }),
+
+      catchError(error => {
+        console.error('Erro ao alterar perfil usuario:', error);
+        return throwError(error);
+      })
+    );
+  }
 }

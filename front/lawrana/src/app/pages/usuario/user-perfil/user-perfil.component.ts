@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { PerfilUsuario, Usuario } from '../../../interfaces/usuario';
 import { UsuarioService } from '../../../core/services/usuario.service';
+import { NotificacaoService } from '../../../core/services/notificacao.service';
 
 @Component({
   selector: 'app-user-perfil',
@@ -33,7 +34,8 @@ export class UserPerfilComponent implements OnInit {
   senha: string = ''
   confirma_senha: string = ''
 
-  constructor(private userService : UsuarioService) {
+  constructor(private userService : UsuarioService,
+    private notificador: NotificacaoService) {
 
   }
 
@@ -58,7 +60,15 @@ export class UserPerfilComponent implements OnInit {
   }
 
   alterarUsuario() {
-
+    this.userService.alterarPerfilUsuario(this.usuario).subscribe({
+      next: (value) => {
+        this.notificador.exibirNorificacao('Perfil atualizado com sucesso!', 'Fechar', 'success')
+      },
+      error: (err) => {
+        console.log('exception...', err);
+        this.notificador.exibirNorificacao('Erro ao atualizar o perfil.', 'Fechar', 'error')
+      }
+    });
   }
 
   alterarConfiguracoes() {
