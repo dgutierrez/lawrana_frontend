@@ -4,13 +4,17 @@ import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'r
 import { jwtDecode } from "jwt-decode";
 import { UsuarioToken } from '../../interfaces/usuarioToken';
 import { HttpClient } from '@angular/common/http';
-import { NovoUsuario, Usuario, UsuarioPaginador } from '../../interfaces/usuario';
+import { NovoUsuario, PerfilUsuario, Usuario, UsuarioPaginador } from '../../interfaces/usuario';
 import { environment } from '../../environments/environment';
 
 const KEY = 'lawrana-user-token'
 
 interface ListaEmpresaResponse {
   data: UsuarioPaginador;
+}
+
+interface PerfilUsuarioResponse {
+  data: PerfilUsuario;
 }
 
 @Injectable({
@@ -103,6 +107,29 @@ export class UsuarioService {
 
       catchError(error => {
         console.error('Erro ao criar usuario:', error);
+        return throwError(error);
+      })
+    );
+  }
+
+  buscarPerfilUsuario(): Observable<PerfilUsuario>{
+    return this.http.get<PerfilUsuarioResponse>(`${this.apiUrl}/usuario/perfil`, { observe: 'response' })
+    .pipe(
+      tap(response => {
+        console.log('Response completo:', response);
+      }),
+      map(response => {
+        if (response.body && response.body.data) {
+          const usuarios = response.body.data;
+          console.log('perfil mapeado:', usuarios);
+          return usuarios;
+        } else {
+          console.error('Formato de resposta inesperado:', response);
+          throw new Error('Formato de resposta inesperado ou perfil não encontrado');
+        }
+      }),
+      catchError(error => {
+        console.error('Erro ao buscar perfil usuario:', error);
         return throwError(error);
       })
     );

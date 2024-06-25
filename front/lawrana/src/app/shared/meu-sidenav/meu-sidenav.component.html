@@ -1,7 +1,7 @@
 <div class="sidenav-header">
-  <img [width]="profilePicSize()" [height]="profilePicSize()" src="assets/imagens/eu_linkedin.png">
+  <img [width]="profilePicSize()" [height]="profilePicSize()" [src]="perfilUsuario.foto">
   <div class="header-text" [class.hide-header-text]="sideNavCollapsed()">
-    <h2>Nome</h2>
+    <h2>{{ perfilUsuario.nome }}</h2>
   </div>
 </div>
 <mat-nav-list>

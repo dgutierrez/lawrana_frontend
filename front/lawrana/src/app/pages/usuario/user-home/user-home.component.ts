@@ -5,6 +5,7 @@ import { ViewerComponent } from '../../../shared/viewer/viewer.component';
 import { UsuarioTokenService } from '../../../core/services/usuario-token.service';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../../core/services/usuario.service';
+import { PerfilUsuario } from '../../../interfaces/usuario';
 
 @Component({
   selector: 'app-user-home',
@@ -32,6 +33,7 @@ export class UserHomeComponent implements OnInit {
     }
   ])
 
+  perfil!: PerfilUsuario;
   nomeUsuario: string = '';
 
   constructor(
@@ -42,6 +44,8 @@ export class UserHomeComponent implements OnInit {
   }
 
   ngOnInit():void {
-
+    this.userService.buscarPerfilUsuario().subscribe((resp) => {
+      this.perfil = resp;
+    })
   }
 }

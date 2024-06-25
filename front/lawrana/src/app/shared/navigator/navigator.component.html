@@ -5,7 +5,7 @@
 </mat-toolbar>
 <mat-sidenav-container id="home_nav">
   <mat-sidenav opened mode="side" [style.width]="sideNavWidth()">
-    <app-meu-sidenav [collapsed]="collapsed()" [menuItems]="menuItems"></app-meu-sidenav>
+    <app-meu-sidenav [collapsed]="collapsed()" [menuItems]="menuItems" [perfilUsuario]="perfilUsuario"></app-meu-sidenav>
   </mat-sidenav>
   <mat-sidenav-content class="content" [style.margin-left]="sideNavWidth()" >
     <!-- menu {{ tipo }} -->

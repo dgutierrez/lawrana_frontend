@@ -5,6 +5,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { MenuItem, MeuSidenavComponent } from '../meu-sidenav/meu-sidenav.component';
+import { PerfilUsuario } from '../../interfaces/usuario';
 
 @Component({
   selector: 'app-navigator',
@@ -15,6 +16,7 @@ import { MenuItem, MeuSidenavComponent } from '../meu-sidenav/meu-sidenav.compon
 })
 export class NavigatorComponent {
   @Input() tipo:string = ''
+  @Input() perfilUsuario!: PerfilUsuario;
 
   collapsed = signal(false)
 
