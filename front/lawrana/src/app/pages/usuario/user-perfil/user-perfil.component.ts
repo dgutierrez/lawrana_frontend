@@ -72,7 +72,15 @@ export class UserPerfilComponent implements OnInit {
   }
 
   alterarConfiguracoes() {
-
+    this.userService.alterarConfigUsuario(this.usuario).subscribe({
+      next: (value) => {
+        this.notificador.exibirNorificacao('Configuração atualizada com sucesso!', 'Fechar', 'success')
+      },
+      error: (err) => {
+        console.log('exception...', err);
+        this.notificador.exibirNorificacao('Erro ao atualizar a configuração.', 'Fechar', 'error')
+      }
+    });
   }
 
   alterarSenha() {

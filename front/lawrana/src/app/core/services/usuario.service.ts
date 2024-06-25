@@ -151,4 +151,22 @@ export class UsuarioService {
       })
     );
   }
+
+  alterarConfigUsuario(perfil: PerfilUsuario): Observable<any>{
+    const c ={
+      openai_token: perfil.configuracoes.openai_token,
+      gemini_token: perfil.configuracoes.gemini_token
+    }
+    return this.http.put(`${this.apiUrl}/usuario/configuracao`, c, { observe: 'response' })
+    .pipe(
+      tap(response => {
+        console.log('Response completo:', response);
+      }),
+
+      catchError(error => {
+        console.error('Erro ao alterar configuração usuario:', error);
+        return throwError(error);
+      })
+    );
+  }
 }
