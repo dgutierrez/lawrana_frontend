@@ -1,0 +1,74 @@
+<h3>Perfil</h3>
+<div>
+  <form>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Nome</mat-label>
+      <input matInput placeholder="Nome" [(ngModel)]="usuario.nome" name="nome" readonly>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>E-mail</mat-label>
+      <input matInput placeholder="email" [(ngModel)]="usuario.email" name="email" readonly>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Código de integração</mat-label>
+      <input matInput placeholder="Código de integração" [(ngModel)]="usuario.codigo_usuario_integracao" name="codigo_usuario_integracao" readonly>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Cadastro</mat-label>
+      <input matInput placeholder="data_cadastro" [(ngModel)]="usuario.data_cadastro" name="data_cadastro" readonly>
+    </mat-form-field>
+    <div class="div-foto">
+      <img width="200" height="200" *ngIf="usuario.foto" [src]="usuario.foto" alt="Imagem usuario">
+      <button mat-fab color="primary" (click)="fileInput.click()" aria-label="Example icon button with a delete icon">
+        <mat-icon>camera</mat-icon>
+      </button>
+
+      <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
+    </div>
+
+    <div class="acoes">
+      <button mat-flat-button color="primary" (click)="alterarUsuario()">Salvar</button>
+    </div>
+  </form>
+</div>
+<p></p>
+<mat-divider [inset]="true"></mat-divider>
+<h5>Configurações</h5>
+<div>
+  <form>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Openai</mat-label>
+      <input matInput placeholder="OpenAi token" [(ngModel)]="usuario.configuracoes.openai_token" name="openai">
+    </mat-form-field>
+    <p></p>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Gemini</mat-label>
+      <input matInput placeholder="Gemini token" [(ngModel)]="usuario.configuracoes.gemini_token" name="gemini">
+    </mat-form-field>
+    <div class="acoes">
+      <button mat-flat-button color="primary" (click)="alterarConfiguracoes()">Salvar</button>
+    </div>
+  </form>
+</div>
+<p></p>
+<mat-divider [inset]="true"></mat-divider>
+<h5>Senha</h5>
+<div>
+  <form>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Senha</mat-label>
+      <input matInput type="password" placeholder="Senha" [(ngModel)]="senha" name="senha">
+    </mat-form-field>
+    <p></p>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Confirma senha</mat-label>
+      <input matInput type="password" placeholder="Confirma senha" [(ngModel)]="confirma_senha" name="confirma_senha">
+    </mat-form-field>
+    <div class="acoes">
+      <button mat-flat-button color="primary" (click)="alterarSenha()">Salvar</button>
+    </div>
+  </form>
+</div>

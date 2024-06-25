@@ -15,6 +15,7 @@ import { EmpresaPerfilComponent } from './pages/empresa/empresa-perfil/empresa-p
 import { EmpresaConfiguracoesComponent } from './pages/empresa/empresa-configuracoes/empresa-configuracoes.component';
 import { EmpresaUsuariosComponent } from './pages/empresa/empresa-usuarios/empresa-usuarios.component';
 import { EmpresaCriarUsuarioComponent } from './pages/empresa/empresa-criar-usuario/empresa-criar-usuario.component';
+import { UserPerfilComponent } from './pages/usuario/user-perfil/user-perfil.component';
 
 export const routes: Routes = [
   {
@@ -74,6 +75,7 @@ export const routes: Routes = [
       { path: 'assistentes', component: ListarUserAssistenteComponent, canActivate: [authGuard] },
       { path: 'assistentes/editarAssistente/:id', component: EditarUserAssistenteComponent, canActivate: [authGuard] },
       { path: 'assistentes/criarAssistente', component: CriarUserAssistenteComponent, canActivate: [authGuard] },
+      { path: 'perfil', component: UserPerfilComponent, canActivate: [authGuard] },
     ]
   }
 ];

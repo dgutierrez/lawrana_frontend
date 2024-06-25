@@ -17,7 +17,7 @@ import { PerfilUsuario } from '../../../interfaces/usuario';
 export class EmpHomeComponent implements OnInit {
   usuarioMenuItems = signal<MenuItem[]>([
     {
-      icon: 'source_environment',
+      icon: 'apartment',
       label: 'Perfil',
       route: 'perfil'
     },

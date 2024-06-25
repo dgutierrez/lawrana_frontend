@@ -27,9 +27,14 @@ export class UserHomeComponent implements OnInit {
       route: 'chats'
     },
     {
-      icon: 'folder_special',
-      label: 'Base de conhecimento',
+      icon: 'cloud_upload',
+      label: 'Uploads',
       route: 'chats'
+    },
+    {
+      icon: 'person',
+      label: 'Perfil',
+      route: 'perfil'
     }
   ])
 
