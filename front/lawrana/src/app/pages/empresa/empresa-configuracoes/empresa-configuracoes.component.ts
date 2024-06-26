@@ -26,13 +26,16 @@ export class EmpresaConfiguracoesComponent implements OnInit {
     nome: '',
     user: '',
     configuracoes:  {
-      claude_token: '',
-      disponibiliza_pasta_empresa: true,
-      disponibiliza_token_empresa: true,
+      qtd_claude_token: 0,
+      disponibiliza_pasta_empresa: false,
+      disponibiliza_token_openai: false,
+      disponibiliza_aws_claude: false,
+      disponibiliza_token_gemini: false,
       gemini_token: '',
       openai_token: '',
       tamanho_armazenamento: 1,
-      url_status_usuario: ''
+      url_status_usuario: '',
+      senha_padrao: ''
     }
   }
 

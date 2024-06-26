@@ -40,13 +40,16 @@ export class EmpHomeComponent implements OnInit {
 
   empresa: Empresa = {
     configuracoes: {
-      claude_token: '',
+      qtd_claude_token: 0,
       disponibiliza_pasta_empresa: false,
-      disponibiliza_token_empresa: false,
+      disponibiliza_token_openai: false,
+      disponibiliza_aws_claude: false,
+      disponibiliza_token_gemini: false,
       gemini_token: '',
       openai_token: '',
       tamanho_armazenamento: 1,
-      url_status_usuario: ''
+      url_status_usuario: '',
+      senha_padrao: ''
     },
     data_cadastro: '',
     email: '',

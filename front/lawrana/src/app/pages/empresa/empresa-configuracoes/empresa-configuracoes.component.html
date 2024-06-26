@@ -1,24 +1,43 @@
 <h3>Configurações</h3>
 <div>
   <form>
-    <mat-slide-toggle [(ngModel)]="empresa.configuracoes.disponibiliza_pasta_empresa" name="pasta_empresa">Pasta empresa</mat-slide-toggle>
-
-    <mat-slide-toggle [(ngModel)]="empresa.configuracoes.disponibiliza_token_empresa" name="token_empresa">Token empresa</mat-slide-toggle>
+    <!--<mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Configuração de pasta</mat-label>
+      <mat-slide-toggle [(ngModel)]="empresa.configuracoes.disponibiliza_pasta_empresa" name="pasta_empresa">Pasta empresa</mat-slide-toggle>
+      <input hidden matInput placeholder="Senha padrão" [(ngModel)]="empresa.configuracoes.disponibiliza_pasta_empresa" name="pasta_empresa" readonly>
+    </mat-form-field>-->
+    <p></p>
+    <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
+      <mat-label>Configuração de pasta e senha padrão</mat-label>
+      <mat-slide-toggle [(ngModel)]="empresa.configuracoes.disponibiliza_pasta_empresa" name="pasta_empresa">Pasta empresa</mat-slide-toggle>
+      <p></p>
+      <input matInput placeholder="Senha padrão" [(ngModel)]="empresa.configuracoes.senha_padrao" name="senha_padrao">
+    </mat-form-field>
     <p></p>
     <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
       <mat-label>Openai</mat-label>
+      <mat-slide-toggle [(ngModel)]="empresa.configuracoes.disponibiliza_token_openai" name="token_openai">Token Openai</mat-slide-toggle>
+      <p></p>
       <input matInput placeholder="OpenAi token" [(ngModel)]="empresa.configuracoes.openai_token" name="openai">
     </mat-form-field>
+
     <p></p>
+
     <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
       <mat-label>Gemini</mat-label>
+      <mat-slide-toggle [(ngModel)]="empresa.configuracoes.disponibiliza_token_gemini" name="token_gemini">Token Gemini</mat-slide-toggle>
+      <p></p>
       <input matInput placeholder="Gemini token" [(ngModel)]="empresa.configuracoes.gemini_token" name="gemini">
     </mat-form-field>
+
     <p></p>
     <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
       <mat-label>Claude</mat-label>
-      <input matInput placeholder="Claude token" [(ngModel)]="empresa.configuracoes.claude_token" name="claude">
+      <mat-slide-toggle [(ngModel)]="empresa.configuracoes.disponibiliza_aws_claude" name="aws_claude">Aws Cloude</mat-slide-toggle>
+      <p></p>
+      <input matInput placeholder="Claude token" [(ngModel)]="empresa.configuracoes.qtd_claude_token" name="claude" readonly>
     </mat-form-field>
+
     <p></p>
     <mat-form-field class="input_container" appearance="outline" [style.width.px]=700>
       <mat-label>Url SSO</mat-label>

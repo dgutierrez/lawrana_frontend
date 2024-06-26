@@ -18,7 +18,7 @@ export class NotificacaoService {
         buttonText: btn,
         type: tipo
       },
-      duration: 3000, // Duração do toast em milissegundos
+      duration: 30000, // Duração do toast em milissegundos
       panelClass: 'custom-snackbar',
       horizontalPosition: 'center',
       verticalPosition: 'top'
