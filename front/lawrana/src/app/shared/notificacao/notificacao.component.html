@@ -1,6 +1,13 @@
-<div>
-  {{data.message}}
+<div [class]="data.type" class="snackbar-content">
+  <!--<div>
+    {{data.message}}
+  </div>-->
+  <div class="message-content">
+    <mat-icon class="mat-18" *ngIf="data.type == 'success'">check_circle</mat-icon>
+    <mat-icon class="mat-18" *ngIf="data.type == 'error'">error</mat-icon>
+    {{data.message}}
+    <!--<button mat-flat-button (click)="snackBarRef.dismiss()">{{ data.buttonText }}</button>-->
+    <!--<a (click)="snackBarRef.dismiss()">X</a>-->
+  </div>
 </div>
-<div>
-  <button mat-flat-button (click)="snackBarRef.dismiss()">{{ data.buttonText }}</button>
-</div>
+

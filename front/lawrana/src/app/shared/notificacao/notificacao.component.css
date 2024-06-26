@@ -1,14 +1,47 @@
-.success-mat-snack-bar-container {
-  background-color: #4caf50; /* Verde para sucesso */
-  color: #fff;
+.snackbar-content {
+  padding: 16px;
+  border-radius: 4px; /* Optional: For rounded corners */
+  display: flex;
+  align-items: center;
+  border: none; /* Remove border */
 }
 
-.error-mat-snack-bar-container {
+.error {
   background-color: #f44336; /* Vermelho para erro */
   color: #fff;
+  --mdc-snackbar-container-color: #f44336;
+
+  border-radius: 5px;
+  outline-offset: 2px;
+  outline: 3px solid #f44336;
+  --mdc-snackbar-container-color: #f44336;
 }
 
 .success {
   background-color: #4caf50; /* Verde para sucesso */
   color: #fff;
+  --mdc-snackbar-container-color: #4caf50;
+
+  border-radius: 5px;
+  outline-offset: 2px;
+  outline: 3px solid #4caf50;
+  --mdc-snackbar-container-color: #4caf50;
+}
+
+.message-content {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  font-size: 24px; /* Adjust icon size */
+  margin-right: 8px; /* Space between icon and text */
+}
+
+::ng-deep .custom-snackbar .error {
+  background-color: #f44336;
+}
+
+::ng-deep .custom-snackbar .success {
+  background-color: #4caf50;
 }

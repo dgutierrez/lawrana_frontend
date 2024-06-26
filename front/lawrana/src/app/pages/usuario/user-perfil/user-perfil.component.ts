@@ -84,6 +84,14 @@ export class UserPerfilComponent implements OnInit {
   }
 
   alterarSenha() {
-
+    this.userService.alterarSenhaUsuario(this.senha, this.confirma_senha).subscribe({
+      next: (value) => {
+        this.notificador.exibirNorificacao('Senha atualizada com sucesso!', 'Fechar', 'success')
+      },
+      error: (err) => {
+        console.log('exception...', err);
+        this.notificador.exibirNorificacao('Erro ao atualizar a senha.', 'Fechar', 'error')
+      }
+    });
   }
 }

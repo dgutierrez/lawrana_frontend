@@ -19,7 +19,7 @@ export class NotificacaoService {
         type: tipo
       },
       duration: 3000, // Duração do toast em milissegundos
-      panelClass: tipo,
+      panelClass: 'custom-snackbar',
       horizontalPosition: 'center',
       verticalPosition: 'top'
     });

@@ -169,4 +169,22 @@ export class UsuarioService {
       })
     );
   }
+
+  alterarSenhaUsuario(senha: string, confirma_senha: string): Observable<any>{
+    const s ={
+      senha: senha,
+      confirma_senha: confirma_senha
+    }
+    return this.http.put(`${this.apiUrl}/usuario/senha`, s, { observe: 'response' })
+    .pipe(
+      tap(response => {
+        console.log('Response completo:', response);
+      }),
+
+      catchError(error => {
+        console.error('Erro ao alterar senha usuario:', error);
+        return throwError(error);
+      })
+    );
+  }
 }
