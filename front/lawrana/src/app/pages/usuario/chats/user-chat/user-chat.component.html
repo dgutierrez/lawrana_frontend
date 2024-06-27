@@ -8,9 +8,12 @@
     Apagar chat
   </button>
 </mat-card-actions>
-<div class="chat-container">
+<div #chatContainer class="chat-container">
   <div *ngFor="let message of chat.mensagens" [ngClass]="{'user-message': message.tipo_mensagem === 'Usuario', 'assistant-message': message.tipo_mensagem === 'Assistente'}">
-    {{ message.mensagem }}
+    <button *ngIf="message.tipo_mensagem === 'Assistente'" (click)="copyCode(message.mensagem)" class="copy-button">Copiar</button>
+    <app-code-chat *ngIf="isCodeMessage(message.mensagem)" [code]="message.mensagem"></app-code-chat>
+    <span *ngIf="!isCodeMessage(message.mensagem)" [innerHTML]="message.mensagem"></span>
+    <!--<span  [innerHTML]="message.mensagem"></span>-->
   </div>
 </div>
 <div class="input-container">

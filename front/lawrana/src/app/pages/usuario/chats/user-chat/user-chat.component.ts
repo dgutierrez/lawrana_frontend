@@ -1,5 +1,5 @@
 import { Mensagem } from './../../../../interfaces/mensagem';
-import { Component, Input, NgModule, OnInit } from '@angular/core';
+import { Component, Input, NgModule, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Chat } from '../../../../interfaces/chat';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,6 +12,8 @@ import { NgFor } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { ChatService } from '../../../../core/services/chat.service';
 import { FormsModule } from '@angular/forms';
+import * as Prism from 'prismjs';
+import { CodeChatComponent } from '../code-chat/code-chat.component';
 
 export type ChatItem = {
   icon: string;
@@ -24,11 +26,11 @@ export type ChatItem = {
 @Component({
   selector: 'app-user-chat',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule, MatTooltipModule, NgFor, CommonModule, FormsModule],
+  imports: [MatCardModule, MatButtonModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule, MatTooltipModule, NgFor, CommonModule, FormsModule, CodeChatComponent],
   templateUrl: './user-chat.component.html',
   styleUrl: './user-chat.component.scss'
 })
-export class UserChatComponent implements OnInit {
+export class UserChatComponent implements OnInit, AfterViewInit {
   chat: Chat = {
     codigo_chat: '',
     codigo_assistente: '',
@@ -42,10 +44,16 @@ export class UserChatComponent implements OnInit {
   mensagens: Mensagem[] = []
 
   mensagem: string = ''
+  msgRecebida: string = ''
+  language: string = 'javascript'; // Define um padrão, pode ser alterado conforme necessário
+  highlightedCode!: string;
+  shouldScroll = false;
+  @ViewChild('chatContainer') private chatContainer!: ElementRef;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private chatService: ChatService) {
+    private chatService: ChatService,
+    private el: ElementRef) {
 
   }
 
@@ -85,11 +93,14 @@ export class UserChatComponent implements OnInit {
     }
 
     this.chat.mensagens!.push(novaMsg);
+    this.shouldScroll = true;
 
     this.chatService.enviarMensagem(this.chat.codigo_chat!, this.mensagem).subscribe({
       next: (value : Mensagem) => {
         console.log('mensagem criada', value);
+        //value.mensagem = this.ngAfterViewInit2(value.mensagem);
         this.chat.mensagens!.push(value)
+        this.shouldScroll = true;
       },
       error: (err) => {
         console.log('exception...', err);
@@ -100,6 +111,46 @@ export class UserChatComponent implements OnInit {
 
   buscarChat(){
 
+  }
+
+  ngAfterViewInit2(msg: string): string {
+    this.highlightedCode = Prism.highlight(msg, Prism.languages[this.language], this.language);
+    return this.highlightedCode;
+  }
+
+  ngAfterViewInit() {
+    console.log('passei no ngAfterViewInit')
+    this.highlightedCode = Prism.highlight(this.msgRecebida, Prism.languages[this.language], this.language);
+    this.scrollToBottom();
+  }
+
+  isCodeMessage(message: string): boolean {
+    // Defina aqui sua lógica para identificar mensagens que são blocos de código.
+    // Um exemplo simples seria verificar se a mensagem contém a tag <code>.
+    return message.includes('<code>') || message.includes('```');
+  }
+
+  ngAfterViewChecked() {
+    if (this.shouldScroll) {
+      this.scrollToBottom();
+      this.shouldScroll = false;
+    }
+  }
+
+  private scrollToBottom(): void {
+    try {
+      this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+    } catch(err) { }
+  }
+
+  copyCode(msg: string) {
+    const textarea = document.createElement('textarea');
+    textarea.value = msg;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    alert('Código copiado para a área de transferência!');
   }
 
 }
