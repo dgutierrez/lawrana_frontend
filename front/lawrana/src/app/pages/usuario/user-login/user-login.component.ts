@@ -5,12 +5,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { UsuarioAutenticacaoService } from '../../../core/services/usuario-autenticacao.service';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-user-login',
   standalone: true,
-  imports: [MatCardModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, NgIf],
+  imports: [MatCardModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, NgIf, NgFor],
   templateUrl: './user-login.component.html',
   styleUrl: './user-login.component.scss'
 })
@@ -20,6 +20,8 @@ export class UserLoginComponent implements OnInit {
           private authService: UsuarioAutenticacaoService){
 
   }
+
+  errosApi: string[] = []
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -42,11 +44,10 @@ export class UserLoginComponent implements OnInit {
 
     this.authService.autenticar(codigo_empresa, email, senha).subscribe({
       next: (value) => {
-        console.log('login', value);
         this.router.navigate(['/usuario']);
       },
       error: (err) => {
-        console.log('exception...', err);
+        this.errosApi = err?.error?.erros || [];
       }
     });
 

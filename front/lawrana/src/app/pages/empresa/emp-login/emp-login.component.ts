@@ -42,16 +42,10 @@ export class EmpLoginComponent implements OnInit {
 
     this.authService.autenticar(email, senha).subscribe({
       next: (value) => {
-        console.log('login', value);
-
         this.router.navigate(['/empresa']);
       },
       error: (err) => {
-        console.log('exception...', err);
-        console.log('exception...', err?.error?.erros);
         this.errosApi = err?.error?.erros || [];
-
-        console.log(this.errosApi?.length)
       }
     });
   }
