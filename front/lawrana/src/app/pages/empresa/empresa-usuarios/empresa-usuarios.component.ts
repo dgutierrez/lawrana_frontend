@@ -8,13 +8,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalExclusaoComponent } from '../../../shared/modal-exclusao/modal-exclusao.component';
 import { RouterModule } from '@angular/router';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { ModalResetSenhaComponent } from '../modal-reset-senha/modal-reset-senha.component';
+import { EmpresaService } from '../../../core/services/empresa.service';
+import { ListaPessoaAnimationTrigger } from '../../../animations/lista-pessoa-animation';
+
 
 @Component({
   selector: 'app-empresa-usuarios',
   standalone: true,
   imports: [NgFor, NgIf, MatIconModule, MatButtonModule, RouterModule, MatPaginatorModule],
   templateUrl: './empresa-usuarios.component.html',
-  styleUrl: './empresa-usuarios.component.css'
+  styleUrl: './empresa-usuarios.component.css',
+  animations: [ListaPessoaAnimationTrigger]
 })
 export class EmpresaUsuariosComponent implements OnInit {
   usuariosPaginado: UsuarioPaginador = {
@@ -27,8 +32,10 @@ export class EmpresaUsuariosComponent implements OnInit {
   pageSize = 10;
   pageIndex = 0;
   pageSizeOptions = [10, 25];
+  indexPessoa = -1;
 
   constructor(private userService: UsuarioService,
+    private empService: EmpresaService,
     private dialog: MatDialog) {
 
   }
@@ -60,8 +67,6 @@ export class EmpresaUsuariosComponent implements OnInit {
     });
   }
 
-
-
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
     this.length = e.length;
@@ -70,5 +75,21 @@ export class EmpresaUsuariosComponent implements OnInit {
 
     console.log(e.pageSize)
     this.carregarLista(e.pageIndex, e.pageSize);
+  }
+
+  resetarSenha(id: string){
+    const dialogRef = this.dialog.open(ModalResetSenhaComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Código para excluir o item
+        this.empService.resetarSenhaUsuario(id).subscribe((response) =>
+        {
+          this.carregarLista(this.pageIndex, this.pageSize);
+        });
+      } else {
+        console.log('Usuário cancelou o reset');
+      }
+    });
   }
 }

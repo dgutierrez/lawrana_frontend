@@ -101,4 +101,8 @@ export class EmpresaService {
   altearConfigEmpresa(empConfig: EmpresaConfig): Observable<any> {
     return this.http.put(`${this.apiUrl}/empresa/configuracao`, empConfig);
   }
+
+  resetarSenhaUsuario(idUsuario: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/empresa/usuario/reseta_senha/${idUsuario}`, idUsuario);
+  }
 }

@@ -16,12 +16,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let usuario of usuariosPaginado.usuarios">
+        <tr *ngFor="let usuario of usuariosPaginado.usuarios; let i = index" (mouseover)="indexPessoa = i" [@destacaUsuario]="indexPessoa === i ? 'destacado' : 'default'">
           <td>{{ usuario.nome }}</td>
           <td>{{ usuario.email }}</td>
           <td>{{ usuario.codigo_usuario_integracao }}</td>
           <td>{{ usuario.data_cadastro }}</td>
           <td>
+            <button mat-mini-fab color="warn" matTooltip="Resetar senha" class="fab-button" aria-label="Reset senha" (click)="resetarSenha(usuario.codigo_usuario)">
+              <mat-icon>password</mat-icon>
+            </button>
             <button mat-mini-fab color="warn" matTooltip="Deletar usuario" class="fab-button" aria-label="Deletar" (click)="openConfirmDialog(usuario.codigo_usuario)">
               <mat-icon>delete</mat-icon>
             </button>

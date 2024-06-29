@@ -11,8 +11,10 @@
 <div #chatContainer class="chat-container">
   <div *ngFor="let message of chat.mensagens" [ngClass]="{'user-message': message.tipo_mensagem === 'Usuario', 'assistant-message': message.tipo_mensagem === 'Assistente'}">
     <button *ngIf="message.tipo_mensagem === 'Assistente'" (click)="copyCode(message.mensagem)" class="copy-button">Copiar</button>
-    <app-code-chat *ngIf="isCodeMessage(message.mensagem)" [code]="message.mensagem"></app-code-chat>
-    <span *ngIf="!isCodeMessage(message.mensagem)" [innerHTML]="message.mensagem"></span>
+    <!--<app-code-chat @exibeMensagem *ngIf="isCodeMessage(message.mensagem)" [code]="message.mensagem"></app-code-chat>
+    <span @exibeMensagem  *ngIf="!isCodeMessage(message.mensagem)" [innerHTML]="message.mensagem"></span>-->
+
+    <app-code-chat @exibeMensagem [code]="message.mensagem"></app-code-chat>
     <!--<span  [innerHTML]="message.mensagem"></span>-->
   </div>
 </div>

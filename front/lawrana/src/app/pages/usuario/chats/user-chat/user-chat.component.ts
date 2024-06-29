@@ -14,6 +14,7 @@ import { ChatService } from '../../../../core/services/chat.service';
 import { FormsModule } from '@angular/forms';
 import * as Prism from 'prismjs';
 import { CodeChatComponent } from '../code-chat/code-chat.component';
+import { exibeNovaMensagenTrigger } from '../../../../animations/chat-animations';
 
 export type ChatItem = {
   icon: string;
@@ -28,7 +29,8 @@ export type ChatItem = {
   standalone: true,
   imports: [MatCardModule, MatButtonModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule, MatTooltipModule, NgFor, CommonModule, FormsModule, CodeChatComponent],
   templateUrl: './user-chat.component.html',
-  styleUrl: './user-chat.component.scss'
+  styleUrl: './user-chat.component.scss',
+  animations: [exibeNovaMensagenTrigger]
 })
 export class UserChatComponent implements OnInit, AfterViewInit {
   chat: Chat = {
