@@ -19,6 +19,14 @@
             <mat-error *ngIf="loginForm.get('senha')?.errors?.['required']">Senha obrigatória</mat-error>
           </mat-form-field>
         </div>
+        <div *ngIf="errosApi?.length" class="erros-api">
+          <ul>
+            <li *ngFor="let error of errosApi">{{ error }}</li>
+          </ul>
+        </div>
+        <div *ngIf="errosApi?.length">
+          <p></p>
+        </div>
         <button [disabled]="loginForm.invalid" mat-flat-button color="primary" (click)="login()">
           Ok
         </button>
