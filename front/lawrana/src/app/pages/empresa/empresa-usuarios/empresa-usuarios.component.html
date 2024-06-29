@@ -4,6 +4,10 @@
   Novo usuario
 </button>
 <div class="usuarios-container">
+  <div class="busca">
+    <p class="ff-prompt">Pesquisa</p>
+    <input type="search" id="campo-busca" placeholder="Nome" [(ngModel)]="nomeBusca" (keyup)="filtrarPorNome(nomeBusca)">
+  </div>
   <div *ngIf="usuariosPaginado.usuarios; else semUsuarios">
     <table>
       <thead>

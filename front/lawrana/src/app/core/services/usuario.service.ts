@@ -61,8 +61,8 @@ export class UsuarioService {
     return this.usuarioTokenService.buscarToken(KEY);
   }
 
-  listarUsuarios(pagina: number, registros: number): Observable<UsuarioPaginador> {
-    return this.http.get<ListaEmpresaResponse>(`${this.apiUrl}/empresa/usuario?pagina=${pagina}&registros=${registros}`, { observe: 'response' })
+  listarUsuarios(pagina: number, registros: number, filtro: string): Observable<UsuarioPaginador> {
+    return this.http.get<ListaEmpresaResponse>(`${this.apiUrl}/empresa/usuario?pagina=${pagina}&registros=${registros}&nome=${filtro}`, { observe: 'response' })
     .pipe(
       tap(response => {
         console.log('Response completo:', response);

@@ -11,12 +11,14 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { ModalResetSenhaComponent } from '../modal-reset-senha/modal-reset-senha.component';
 import { EmpresaService } from '../../../core/services/empresa.service';
 import { ListaPessoaAnimationTrigger } from '../../../animations/lista-pessoa-animation';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-empresa-usuarios',
   standalone: true,
-  imports: [NgFor, NgIf, MatIconModule, MatButtonModule, RouterModule, MatPaginatorModule],
+  imports: [NgFor, NgIf, MatIconModule, MatButtonModule, RouterModule, MatPaginatorModule, MatInputModule, FormsModule],
   templateUrl: './empresa-usuarios.component.html',
   styleUrl: './empresa-usuarios.component.css',
   animations: [ListaPessoaAnimationTrigger]
@@ -33,6 +35,7 @@ export class EmpresaUsuariosComponent implements OnInit {
   pageIndex = 0;
   pageSizeOptions = [10, 25];
   indexPessoa = -1;
+  nomeBusca: string = ''
 
   constructor(private userService: UsuarioService,
     private empService: EmpresaService,
@@ -41,11 +44,11 @@ export class EmpresaUsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.carregarLista(this.pageIndex, this.pageSize);
+    this.carregarLista(this.pageIndex, this.pageSize, this.nomeBusca);
   }
 
-  carregarLista(pagina: number, registros: number) {
-    this.userService.listarUsuarios(pagina, registros).subscribe((response: UsuarioPaginador) => {
+  carregarLista(pagina: number, registros: number, filtro: string) {
+    this.userService.listarUsuarios(pagina, registros, filtro).subscribe((response: UsuarioPaginador) => {
       this.usuariosPaginado = response;
     })
   }
@@ -59,7 +62,7 @@ export class EmpresaUsuariosComponent implements OnInit {
         console.log('Usuário confirmou a exclusão');
         this.userService.deletarUsuario(id).subscribe((response) =>
         {
-          this.carregarLista(this.pageIndex, this.pageSize);
+          this.carregarLista(this.pageIndex, this.pageSize, this.nomeBusca);
         });
       } else {
         console.log('Usuário cancelou a exclusão');
@@ -74,7 +77,7 @@ export class EmpresaUsuariosComponent implements OnInit {
     this.pageIndex = e.pageIndex;
 
     console.log(e.pageSize)
-    this.carregarLista(e.pageIndex, e.pageSize);
+    this.carregarLista(e.pageIndex, e.pageSize, this.nomeBusca);
   }
 
   resetarSenha(id: string){
@@ -85,11 +88,18 @@ export class EmpresaUsuariosComponent implements OnInit {
         // Código para excluir o item
         this.empService.resetarSenhaUsuario(id).subscribe((response) =>
         {
-          this.carregarLista(this.pageIndex, this.pageSize);
+          this.carregarLista(this.pageIndex, this.pageSize, this.nomeBusca);
         });
       } else {
         console.log('Usuário cancelou o reset');
       }
     });
+  }
+
+  filtrarPorNome(nomeBusca: string) {
+    if(this.nomeBusca.length > 2 || this.nomeBusca.length == 0)
+    {
+      this.carregarLista(this.pageIndex, this.pageSize, this.nomeBusca);
+    }
   }
 }
