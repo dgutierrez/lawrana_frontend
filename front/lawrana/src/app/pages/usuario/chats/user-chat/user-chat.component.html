@@ -3,7 +3,7 @@
     <img height="32px" width="32px" [src]="chat.foto_assistente" alt="assistente">
   </figure>
   <h3>{{ chat.nome_assistente }} - {{ chat.nome_chat }}</h3>
-  <button mat-flat-button color="warn" routerLink="/usuario/assistentes/criarAssistente">
+  <button mat-flat-button color="warn" (click)="deletarChat(chat.codigo_chat!)">
     <mat-icon>delete</mat-icon>
     Apagar chat
   </button>

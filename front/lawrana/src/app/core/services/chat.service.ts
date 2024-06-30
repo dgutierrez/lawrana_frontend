@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, Subject, map, tap } from 'rxjs';
 import { Chat } from '../../interfaces/chat';
 import { Mensagem } from '../../interfaces/mensagem';
 
@@ -26,6 +26,9 @@ export class ChatService {
   constructor(private http: HttpClient) {
 
   }
+
+  private eventoNotificacao = new Subject<any>();
+  eventoNotificacao$ = this.eventoNotificacao.asObservable();
 
   criarChat(idAssistente: string): Observable<Chat>{
     const novoChat = {
@@ -93,4 +96,13 @@ export class ChatService {
     );
   }
 
+  deletarChat(idChat: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/chat/${idChat}`, { observe: 'response' })
+    .pipe(
+      tap(response => {
+        console.log('Response completo:', response);
+        this.eventoNotificacao.next(idChat);
+      })
+    );
+  }
 }

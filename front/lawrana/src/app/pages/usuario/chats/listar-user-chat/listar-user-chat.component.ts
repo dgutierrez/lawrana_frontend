@@ -44,6 +44,12 @@ export class ListarUserChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarChats();
+
+    this.chatService.eventoNotificacao$.subscribe((evento) => {
+      console.log('Evento recebido:', evento);
+      // Lógica para tratar o evento
+      this.listarChats();
+    });
   }
 
   listarChats(){

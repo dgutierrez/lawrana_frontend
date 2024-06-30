@@ -1,5 +1,5 @@
 import { Mensagem } from './../../../../interfaces/mensagem';
-import { Component, Input, NgModule, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, NgModule, OnInit, AfterViewInit, ElementRef, ViewChild, Output } from '@angular/core';
 import { Chat } from '../../../../interfaces/chat';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,6 +15,10 @@ import { FormsModule } from '@angular/forms';
 import * as Prism from 'prismjs';
 import { CodeChatComponent } from '../code-chat/code-chat.component';
 import { exibeNovaMensagenTrigger } from '../../../../animations/chat-animations';
+import { EventEmitter } from 'stream';
+import { Subject } from 'rxjs';
+import { ModalExclusaoComponent } from '../../../../shared/modal-exclusao/modal-exclusao.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export type ChatItem = {
   icon: string;
@@ -55,7 +59,8 @@ export class UserChatComponent implements OnInit, AfterViewInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private chatService: ChatService,
-    private el: ElementRef) {
+    private el: ElementRef,
+    private dialog: MatDialog) {
 
   }
 
@@ -109,6 +114,22 @@ export class UserChatComponent implements OnInit, AfterViewInit {
       }
     });
     this.mensagem = ''
+  }
+
+  deletarChat(idChat: string) {
+    const dialogRef = this.dialog.open(ModalExclusaoComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Código para excluir o item
+        console.log('Usuário confirmou a exclusão');
+        this.chatService.deletarChat(idChat).subscribe((r) => {
+          this.router.navigate([`usuario/chats/`]);
+        })
+      } else {
+        console.log('Usuário cancelou a exclusão');
+      }
+    });
   }
 
   buscarChat(){
