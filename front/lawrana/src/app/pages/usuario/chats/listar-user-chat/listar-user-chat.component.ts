@@ -17,7 +17,7 @@ import { ChatService } from '../../../../core/services/chat.service';
   standalone: true,
   imports: [MatCardModule, NgFor, NgIf, MatButtonModule, MatIconModule, RouterModule, MatButtonToggleModule, UserChatComponent, MatSlideToggleModule, MatSidenavModule, MatListModule],
   templateUrl: './listar-user-chat.component.html',
-  styleUrl: './listar-user-chat.component.css'
+  styleUrl: './listar-user-chat.component.scss'
 })
 export class ListarUserChatComponent implements OnInit {
   @Input() chatItems = signal<ChatItem[]>([

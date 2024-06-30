@@ -1,6 +1,6 @@
 <mat-card-actions class="acoes">
   <figure>
-    <img height="32px" width="32px" [src]="chat.foto_assistente" alt="assistente">
+    <img height="32px" width="32px" [src]="chat.foto_assistente" alt="assistente" class="foto_assistente">
   </figure>
   <h3>{{ chat.nome_assistente }} - {{ chat.nome_chat }}</h3>
   <button mat-flat-button color="warn" (click)="deletarChat(chat.codigo_chat!)">
