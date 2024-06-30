@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatSelectModule } from '@angular/material/select'
 import { NgIf } from '@angular/common';
+import { NotificacaoService } from '../../../../core/services/notificacao.service';
 //import { BrowserModule }  from '@angular/platform-browser';
 //import { MatFileUploadModule } from 'angular-material-fileupload';
 
@@ -33,8 +34,8 @@ export class EditarUserAssistenteComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private assistenteService : AssistenteService
-  ){
+    private assistenteService : AssistenteService,
+    private notificador: NotificacaoService){
 
   }
 
@@ -68,10 +69,13 @@ export class EditarUserAssistenteComponent implements OnInit {
     this.assistenteService.alterarAssistente(this.assistente).subscribe({
       next: (value) => {
         console.log('assistente alterado', value);
+        this.notificador.exibirNotificacao('Assistente alterado com sucesso', 'Fechar', 'success');
         this.router.navigate(['/usuario/assistentes']);
       },
       error: (err) => {
         console.log('exception...', err);
+        var msgErros = err.error.erros;
+        this.notificador.exibirNotificacao(msgErros[0], 'Fechar', 'error');
       }
     });
   }

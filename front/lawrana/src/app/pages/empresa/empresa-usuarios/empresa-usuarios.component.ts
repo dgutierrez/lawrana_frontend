@@ -13,12 +13,13 @@ import { EmpresaService } from '../../../core/services/empresa.service';
 import { ListaPessoaAnimationTrigger } from '../../../animations/lista-pessoa-animation';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @Component({
   selector: 'app-empresa-usuarios',
   standalone: true,
-  imports: [NgFor, NgIf, MatIconModule, MatButtonModule, RouterModule, MatPaginatorModule, MatInputModule, FormsModule],
+  imports: [NgFor, NgIf, MatIconModule, MatButtonModule, RouterModule, MatPaginatorModule, MatInputModule, FormsModule, MatFormFieldModule],
   templateUrl: './empresa-usuarios.component.html',
   styleUrl: './empresa-usuarios.component.css',
   animations: [ListaPessoaAnimationTrigger]

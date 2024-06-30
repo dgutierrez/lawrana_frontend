@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
 import { MatSelectModule } from '@angular/material/select'
 import { NgIf } from '@angular/common';
+import { NotificacaoService } from '../../../../core/services/notificacao.service';
 
 @Component({
   selector: 'app-criar-user-assistente',
@@ -30,8 +31,8 @@ export class CriarUserAssistenteComponent {
   }
 
   constructor(private assistenteService: AssistenteService,
-    private router: Router
-  ){
+    private router: Router,
+    private notificador: NotificacaoService){
 
   }
 
@@ -53,10 +54,13 @@ export class CriarUserAssistenteComponent {
     this.assistenteService.criarAssistente(this.assistente).subscribe({
       next: (value) => {
         console.log('assistente criado', value);
+        this.notificador.exibirNotificacao('Assistente criado com sucesso', 'Fechar', 'success');
         this.router.navigate(['/usuario/assistentes']);
       },
       error: (err) => {
         console.log('exception...', err);
+        var msgErros = err.error.erros;
+        this.notificador.exibirNotificacao(msgErros[0], 'Fechar', 'error');
       }
     });
   }

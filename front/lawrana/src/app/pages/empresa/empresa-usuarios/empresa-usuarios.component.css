@@ -30,3 +30,23 @@ td:last-child {
 .fab-button {
   margin: 0;
 }
+
+.acoes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  figure, h3 {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+
+  figure {
+    margin-right: 8px;
+  }
+
+  button {
+    margin-left: auto;
+  }
+}

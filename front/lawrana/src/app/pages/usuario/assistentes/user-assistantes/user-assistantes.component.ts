@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalExclusaoComponent } from '../../../../shared/modal-exclusao/modal-exclusao.component';
 import { AssistenteService } from '../../../../core/services/assistente.service';
 import { ChatService } from '../../../../core/services/chat.service';
+import { NotificacaoService } from '../../../../core/services/notificacao.service';
 
 @Component({
   selector: 'app-user-assistantes',
@@ -36,7 +37,8 @@ export class UserAssistantesComponent {
   constructor(private assistenteService: AssistenteService,
     private router: Router,
     private dialog: MatDialog,
-    private chatService: ChatService){
+    private chatService: ChatService,
+    private notificador: NotificacaoService){
 
   }
 
@@ -64,10 +66,21 @@ export class UserAssistantesComponent {
       if (result) {
         // Código para excluir o item
         console.log('Usuário confirmou a exclusão');
-        this.assistenteService.deletarAssistente(this.assistente!.codigo_assistente!).subscribe((response) =>
+        this.assistenteService.deletarAssistente(this.assistente!.codigo_assistente!).subscribe({
+          next: (value) => {
+            this.notificador.exibirNotificacao('Assistente removido com sucesso', 'Fechar', 'success');
+            this.deletouAssistente.emit();
+          },
+          error: (err) => {
+            var msgErros = err.error.erros;
+            this.notificador.exibirNotificacao(msgErros[0], 'Fechar', 'error');
+          }
+        });
+
+        /*this.assistenteService.deletarAssistente(this.assistente!.codigo_assistente!).subscribe((response) =>
         {
           this.deletouAssistente.emit();
-        });
+        });*/
       } else {
         console.log('Usuário cancelou a exclusão');
       }
