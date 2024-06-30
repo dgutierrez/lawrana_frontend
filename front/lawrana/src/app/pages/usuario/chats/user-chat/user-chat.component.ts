@@ -20,6 +20,7 @@ import { Subject } from 'rxjs';
 import { ModalExclusaoComponent } from '../../../../shared/modal-exclusao/modal-exclusao.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificacaoService } from '../../../../core/services/notificacao.service';
+import { ChatSpinnerComponent } from '../chat-spinner/chat-spinner.component';
 
 export type ChatItem = {
   icon: string;
@@ -32,7 +33,7 @@ export type ChatItem = {
 @Component({
   selector: 'app-user-chat',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule, MatTooltipModule, NgFor, CommonModule, FormsModule, CodeChatComponent],
+  imports: [MatCardModule, MatButtonModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule, MatTooltipModule, NgFor, CommonModule, FormsModule, CodeChatComponent, ChatSpinnerComponent],
   templateUrl: './user-chat.component.html',
   styleUrl: './user-chat.component.scss',
   animations: [exibeNovaMensagenTrigger]
@@ -55,6 +56,7 @@ export class UserChatComponent implements OnInit, AfterViewInit {
   language: string = 'javascript'; // Define um padrão, pode ser alterado conforme necessário
   highlightedCode!: string;
   shouldScroll = false;
+  isLoading: boolean = false;
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
 
   constructor(private router: Router,
@@ -102,19 +104,23 @@ export class UserChatComponent implements OnInit, AfterViewInit {
     }
 
     this.chat.mensagens!.push(novaMsg);
+    this.isLoading = true;
     this.shouldScroll = true;
+
 
     this.chatService.enviarMensagem(this.chat.codigo_chat!, this.mensagem).subscribe({
       next: (value : Mensagem) => {
         console.log('mensagem criada', value);
         //value.mensagem = this.ngAfterViewInit2(value.mensagem);
         this.chat.mensagens!.push(value)
+        this.isLoading = false;
         this.shouldScroll = true;
       },
       error: (err) => {
         var msgErros = err.error.erros;
         console.log(msgErros);
-        this.notificador.exibirNotificacao(msgErros[0], 'Fechar', 'error')
+        this.notificador.exibirNotificacao(msgErros[0], 'Fechar', 'error');
+        this.isLoading = false;
       }
     });
     this.mensagem = ''

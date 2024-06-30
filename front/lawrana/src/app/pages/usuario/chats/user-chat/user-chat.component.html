@@ -15,7 +15,11 @@
     <span @exibeMensagem  *ngIf="!isCodeMessage(message.mensagem)" [innerHTML]="message.mensagem"></span>-->
 
     <app-code-chat @exibeMensagem [code]="message.mensagem"></app-code-chat>
+
     <!--<span  [innerHTML]="message.mensagem"></span>-->
+  </div>
+  <div *ngIf="isLoading" class="spinner-container">
+    <app-chat-spinner [foto_assistente]="chat.foto_assistente"></app-chat-spinner>
   </div>
 </div>
 <div class="input-container">
