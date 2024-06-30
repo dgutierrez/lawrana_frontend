@@ -62,11 +62,11 @@ export class UserPerfilComponent implements OnInit {
   alterarUsuario() {
     this.userService.alterarPerfilUsuario(this.usuario).subscribe({
       next: (value) => {
-        this.notificador.exibirNorificacao('Perfil atualizado com sucesso!', 'Fechar', 'success')
+        this.notificador.exibirNotificacao('Perfil atualizado com sucesso!', 'Fechar', 'success')
       },
       error: (err) => {
         console.log('exception...', err);
-        this.notificador.exibirNorificacao('Erro ao atualizar o perfil.', 'Fechar', 'error')
+        this.notificador.exibirNotificacao('Erro ao atualizar o perfil.', 'Fechar', 'error')
       }
     });
   }
@@ -74,11 +74,11 @@ export class UserPerfilComponent implements OnInit {
   alterarConfiguracoes() {
     this.userService.alterarConfigUsuario(this.usuario).subscribe({
       next: (value) => {
-        this.notificador.exibirNorificacao('Configuração atualizada com sucesso!', 'Fechar', 'success')
+        this.notificador.exibirNotificacao('Configuração atualizada com sucesso!', 'Fechar', 'success')
       },
       error: (err) => {
         console.log('exception...', err);
-        this.notificador.exibirNorificacao('Erro ao atualizar a configuração.', 'Fechar', 'error')
+        this.notificador.exibirNotificacao('Erro ao atualizar a configuração.', 'Fechar', 'error')
       }
     });
   }
@@ -86,11 +86,11 @@ export class UserPerfilComponent implements OnInit {
   alterarSenha() {
     this.userService.alterarSenhaUsuario(this.senha, this.confirma_senha).subscribe({
       next: (value) => {
-        this.notificador.exibirNorificacao('Senha atualizada com sucesso!', 'Fechar', 'success')
+        this.notificador.exibirNotificacao('Senha atualizada com sucesso!', 'Fechar', 'success')
       },
       error: (err) => {
         console.log('exception...', err);
-        this.notificador.exibirNorificacao('Erro ao atualizar a senha.', 'Fechar', 'error')
+        this.notificador.exibirNotificacao('Erro ao atualizar a senha.', 'Fechar', 'error')
       }
     });
   }

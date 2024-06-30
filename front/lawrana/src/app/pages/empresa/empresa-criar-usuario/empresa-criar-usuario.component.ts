@@ -33,12 +33,12 @@ export class EmpresaCriarUsuarioComponent {
   criarUsuario() {
     this.userService.criarUsuario(this.usuario).subscribe({
       next: (value) => {
-        this.notificador.exibirNorificacao('Usuario criado com sucesso', 'Ok', 'success');
+        this.notificador.exibirNotificacao('Usuario criado com sucesso', 'Ok', 'success');
         this.router.navigate(['/empresa/usuarios']);
       },
       error: (err) => {
         console.log('exception...', err);
-        this.notificador.exibirNorificacao('Erro ao criar usuario', 'Ok', 'error');
+        this.notificador.exibirNotificacao('Erro ao criar usuario', 'Ok', 'error');
       }
     });
   }

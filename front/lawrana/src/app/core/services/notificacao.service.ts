@@ -11,7 +11,7 @@ export class NotificacaoService {
 
   }
 
-  exibirNorificacao(msg: string, btn: string, tipo: 'error' | 'success') {
+  exibirNotificacao(msg: string, btn: string, tipo: 'error' | 'success') {
     this.snackBar.openFromComponent(NotificacaoComponent, {
       data: {
         message: msg,

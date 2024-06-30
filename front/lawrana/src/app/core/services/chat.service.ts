@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, map, tap } from 'rxjs';
+import { Observable, Subject, catchError, map, tap, throwError } from 'rxjs';
 import { Chat } from '../../interfaces/chat';
 import { Mensagem } from '../../interfaces/mensagem';
 
@@ -42,12 +42,12 @@ export class ChatService {
     return this.http.get<ListaChatsResponse>(`${this.apiUrl}/chat`, { observe: 'response' })
     .pipe(
       tap(response => {
-        console.log('Response completo:', response);
+        //console.log('Response completo:', response);
       }),
       map(response => {
         // Verifique se a estrutura de resposta está correta
         const chats = response.body?.data || [];
-        console.log('chats mapeados:', chats);
+        //console.log('chats mapeados:', chats);
         return chats;
       })
     );
@@ -57,15 +57,15 @@ export class ChatService {
     return this.http.get<DetalheChatsResponse>(`${this.apiUrl}/chat/${idChat}`, { observe: 'response' })
     .pipe(
       tap(response => {
-        console.log('Response completo:', response);
+        //console.log('Response completo:', response);
       }),
       map(response => {
         if (response.body && response.body.data) {
           const chat = response.body.data;
-          console.log('chat mapeado:', chat);
+          //console.log('chat mapeado:', chat);
           return chat;
         } else {
-          console.error('Formato de resposta inesperado:', response);
+          //console.error('Formato de resposta inesperado:', response);
           throw new Error('Formato de resposta inesperado ou chat não encontrado');
         }
       })
@@ -81,17 +81,21 @@ export class ChatService {
     return this.http.post<MensagemChatsResponse>(`${this.apiUrl}/mensagem`, post, { observe: 'response' })
     .pipe(
       tap(response => {
-        console.log('Response completo:', response);
+        //console.log('Response completo:', response);
       }),
       map(response => {
         if (response.body && response.body.data) {
           const chat = response.body.data;
-          console.log('mensagem mapeado:', chat);
+          //console.log('mensagem mapeado:', chat);
           return chat;
         } else {
-          console.error('Formato de resposta inesperado:', response);
+          //console.error('Formato de resposta inesperado:', response);
           throw new Error('Formato de resposta inesperado ou mensagem não encontrado');
         }
+      }),
+      catchError(error => {
+        console.error('Erro ao buscar usuarios:', error);
+        return throwError(error);
       })
     );
   }
@@ -100,7 +104,7 @@ export class ChatService {
     return this.http.delete(`${this.apiUrl}/chat/${idChat}`, { observe: 'response' })
     .pipe(
       tap(response => {
-        console.log('Response completo:', response);
+        //console.log('Response completo:', response);
         this.eventoNotificacao.next(idChat);
       })
     );

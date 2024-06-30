@@ -55,11 +55,11 @@ export class EmpresaConfiguracoesComponent implements OnInit {
   alterarConfiguracaoEmpresa(){
     this.empresaService.altearConfigEmpresa(this.empresa.configuracoes).subscribe({
       next: (value) => {
-        this.notificador.exibirNorificacao('Configurações atualizadas com sucesso!', 'Fechar', 'success')
+        this.notificador.exibirNotificacao('Configurações atualizadas com sucesso!', 'Fechar', 'success')
       },
       error: (err) => {
         console.log('exception...', err);
-        this.notificador.exibirNorificacao('Erro ao atualizar as configurações.', 'Fechar', 'error')
+        this.notificador.exibirNotificacao('Erro ao atualizar as configurações.', 'Fechar', 'error')
       }
     });
 

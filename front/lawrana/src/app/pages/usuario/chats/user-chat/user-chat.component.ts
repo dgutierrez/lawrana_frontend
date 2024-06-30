@@ -19,6 +19,7 @@ import { EventEmitter } from 'stream';
 import { Subject } from 'rxjs';
 import { ModalExclusaoComponent } from '../../../../shared/modal-exclusao/modal-exclusao.component';
 import { MatDialog } from '@angular/material/dialog';
+import { NotificacaoService } from '../../../../core/services/notificacao.service';
 
 export type ChatItem = {
   icon: string;
@@ -60,7 +61,8 @@ export class UserChatComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private chatService: ChatService,
     private el: ElementRef,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private notificador: NotificacaoService) {
 
   }
 
@@ -110,7 +112,9 @@ export class UserChatComponent implements OnInit, AfterViewInit {
         this.shouldScroll = true;
       },
       error: (err) => {
-        console.log('exception...', err);
+        var msgErros = err.error.erros;
+        console.log(msgErros);
+        this.notificador.exibirNotificacao(msgErros[0], 'Fechar', 'error')
       }
     });
     this.mensagem = ''

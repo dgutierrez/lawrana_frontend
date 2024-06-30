@@ -83,11 +83,11 @@ export class EmpresaPerfilComponent implements OnInit {
   alterarEmpresa(){
     this.empresaService.altearEmpresa(this.empresa).subscribe({
       next: (value) => {
-        this.notificador.exibirNorificacao('Perfil atualizado com sucesso!', 'Fechar', 'success')
+        this.notificador.exibirNotificacao('Perfil atualizado com sucesso!', 'Fechar', 'success')
       },
       error: (err) => {
         console.log('exception...', err);
-        this.notificador.exibirNorificacao('Erro ao atualizar o perfil.', 'Fechar', 'error')
+        this.notificador.exibirNotificacao('Erro ao atualizar o perfil.', 'Fechar', 'error')
       }
     });
   }

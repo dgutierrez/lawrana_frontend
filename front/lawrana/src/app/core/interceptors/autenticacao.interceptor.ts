@@ -44,6 +44,12 @@ export const autenticacaoInterceptor: HttpInterceptorFn = (req, next) => {
         // Redirecionar para a página de login
         router.navigate(['usuario/login']);
         console.error('Token inválido ou expirado. Redirecionando para a página de login.');
+
+        if(userService.estaLogado())
+          userService.logout();
+
+        if(empresaService.estaLogado())
+          empresaService.logout();
       }
       return throwError(error);
     }))
