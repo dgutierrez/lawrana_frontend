@@ -8,6 +8,7 @@ import { NovoUsuario, PerfilUsuario, Usuario, UsuarioPaginador } from '../../int
 import { environment } from '../../environments/environment';
 
 const KEY = 'lawrana-user-token'
+const KEY_CSRF = 'lawrana-user-token-csrf'
 
 interface ListaEmpresaResponse {
   data: UsuarioPaginador;
@@ -48,8 +49,13 @@ export class UsuarioService {
     this.decodificarJwt();
   }
 
+  salvarTokenCSRF(token: string) {
+    this.usuarioTokenService.salvarTokenCSRF(token, KEY_CSRF);
+  }
+
   logout() {
     this.usuarioTokenService.excluirToken(KEY);
+    this.usuarioTokenService.excluirToken(KEY_CSRF);
     this.userSubject.next(null);
   }
 
@@ -59,6 +65,10 @@ export class UsuarioService {
 
   buscarToken() {
     return this.usuarioTokenService.buscarToken(KEY);
+  }
+
+  buscarTokenCSRF() {
+    return this.usuarioTokenService.buscarToken(KEY_CSRF);
   }
 
   listarUsuarios(pagina: number, registros: number, filtro: string): Observable<UsuarioPaginador> {

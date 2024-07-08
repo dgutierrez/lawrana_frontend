@@ -29,6 +29,17 @@ export class UserLoginComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
       senha: [null, Validators.required]
     })
+
+    console.log('chamando csrf')
+    /*this.authService.csrf().subscribe({
+      next: (value) => {
+        console.log('executou csrf')
+        console.log(value)
+      },
+      error: (err) => {
+        this.errosApi = err?.error?.erros || [];
+      }
+    });*/
   }
 
   loginForm!: FormGroup;

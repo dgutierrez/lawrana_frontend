@@ -12,6 +12,7 @@ export const autenticacaoInterceptor: HttpInterceptorFn = (req, next) => {
   const empresaService = inject(EmpresaService);
   const router = inject(Router);
   let token: string = ''
+  let token_csrf: string = ''
 
   if (req.url.includes('login')) {
 
@@ -23,9 +24,11 @@ export const autenticacaoInterceptor: HttpInterceptorFn = (req, next) => {
     } else {
       //console.log('A URL não contém a palavra "empresa".');
       token = userService.buscarToken()
+
     }
   }
 
+  token_csrf = userService.buscarTokenCSRF()
   let novaReq: HttpRequest<unknown>;
 
   if(token !== ''){
@@ -37,6 +40,14 @@ export const autenticacaoInterceptor: HttpInterceptorFn = (req, next) => {
   } else {
     novaReq = req.clone()
   }
+
+  /*if(token_csrf !== ''){
+    novaReq = novaReq.clone({
+    setHeaders: {
+      'x-csrf-token': `${token_csrf}`
+    }
+    });
+  }*/
 
   return next(novaReq).pipe(
     catchError((error: HttpErrorResponse) => {

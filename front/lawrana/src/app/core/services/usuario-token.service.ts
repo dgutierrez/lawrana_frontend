@@ -13,6 +13,10 @@ export class UsuarioTokenService {
     return localStorage.setItem(key, token);
   }
 
+  salvarTokenCSRF(token: string, key: string) {
+    return localStorage.setItem(key, token);
+  }
+
   excluirToken(key: string) {
     localStorage.removeItem(key);
   }
