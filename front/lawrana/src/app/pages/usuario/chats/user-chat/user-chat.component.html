@@ -14,7 +14,8 @@
     <!--<app-code-chat @exibeMensagem *ngIf="isCodeMessage(message.mensagem)" [code]="message.mensagem"></app-code-chat>
     <span @exibeMensagem  *ngIf="!isCodeMessage(message.mensagem)" [innerHTML]="message.mensagem"></span>-->
 
-    <app-code-chat @exibeMensagem [code]="message.mensagem"></app-code-chat>
+    <app-code-chat *ngIf="message.nome_documento === ''" @exibeMensagem [code]="message.mensagem"></app-code-chat>
+    <app-document-chat *ngIf="message.nome_documento !== ''" [fileName]="message.nome_documento"></app-document-chat>
 
     <!--<span  [innerHTML]="message.mensagem"></span>-->
   </div>

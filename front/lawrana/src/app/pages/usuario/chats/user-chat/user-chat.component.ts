@@ -21,6 +21,7 @@ import { ModalExclusaoComponent } from '../../../../shared/modal-exclusao/modal-
 import { MatDialog } from '@angular/material/dialog';
 import { NotificacaoService } from '../../../../core/services/notificacao.service';
 import { ChatSpinnerComponent } from '../chat-spinner/chat-spinner.component';
+import { DocumentChatComponent } from '../document-chat/document-chat.component';
 
 export type ChatItem = {
   icon: string;
@@ -33,7 +34,7 @@ export type ChatItem = {
 @Component({
   selector: 'app-user-chat',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule, MatTooltipModule, NgFor, CommonModule, FormsModule, CodeChatComponent, ChatSpinnerComponent],
+  imports: [MatCardModule, MatButtonModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule, MatTooltipModule, NgFor, CommonModule, FormsModule, CodeChatComponent, ChatSpinnerComponent, DocumentChatComponent],
   templateUrl: './user-chat.component.html',
   styleUrl: './user-chat.component.scss',
   animations: [exibeNovaMensagenTrigger]
@@ -100,7 +101,9 @@ export class UserChatComponent implements OnInit, AfterViewInit {
       codigo_mensagem: '1',
       data_mensagem: agora.toISOString(),
       mensagem: this.mensagem,
-      tipo_mensagem: 'Usuario'
+      tipo_mensagem: 'Usuario',
+      nome_documento: '',
+      extensao_documento: ''
     }
 
     this.chat.mensagens!.push(novaMsg);
