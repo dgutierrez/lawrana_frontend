@@ -1,0 +1,13 @@
+<div class="modal-content">
+  <h3 mat-dialog-title>Adicionar pasta</h3>
+  <div mat-dialog-content class="conteudo">
+    <mat-form-field class="input_container" appearance="outline" [style.width.%]=90>
+      <mat-label>Nome do diretório</mat-label>
+      <input matInput placeholder="Nome" [(ngModel)]="nome_diretorio" >
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="acoes">
+    <button mat-button (click)="onCancel()">Cancelar</button>
+    <button mat-button color="primary" (click)="onConfirm()">Salvar</button>
+  </div>
+</div>

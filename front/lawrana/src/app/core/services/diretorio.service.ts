@@ -58,4 +58,13 @@ export class DiretorioService {
       })
     );
   }
+
+  criarDiretorio(idDiretorio: string, nomeDiretorio: string): Observable<any>{
+    const novoDiretorio = {
+      nome_pasta: nomeDiretorio,
+      codigo_pasta_pai: idDiretorio
+    }
+
+    return this.http.post(`${this.apiUrl}/diretorio`, novoDiretorio);
+  }
 }

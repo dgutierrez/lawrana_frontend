@@ -7,6 +7,20 @@
     <mat-label>Caminho</mat-label>
     <input matInput placeholder="Nome" [(ngModel)]="diretorioRaiz.caminho_diretorio" readonly>
   </mat-form-field>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu" class="menu_container">
+    <button mat-menu-item (click)="openFolderModal()">
+      <mat-icon>folder</mat-icon>
+      <span>Nova pasta</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>upload_file</mat-icon>
+      <span>Documento</span>
+    </button>
+  </mat-menu>
 </div>
 
 <div class="card-wrapper" *ngIf="diretorioRaiz.sub_diretorios.length > 0, else semDiretorio">
