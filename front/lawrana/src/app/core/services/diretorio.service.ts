@@ -67,4 +67,11 @@ export class DiretorioService {
 
     return this.http.post(`${this.apiUrl}/diretorio`, novoDiretorio);
   }
+
+  enviarDocumento(idDiretorio: string, file: File): Observable<any>{
+    const formData: FormData = new FormData();
+    formData.append('files', file, file.name);
+
+    return this.http.post(`${this.apiUrl}/diretorio/${idDiretorio}/documento`, formData);
+  }
 }

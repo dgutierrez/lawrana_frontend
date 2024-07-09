@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { UserFolderModalUploadComponent } from './user-folder-modal-upload/user-folder-modal-upload.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UserDocumentModalUploadComponent } from './user-document-modal-upload/user-document-modal-upload.component';
 
 @Component({
   selector: 'app-user-uploads',
@@ -88,6 +89,22 @@ export class UserUploadsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Nome da nova pasta:', result);
+        if(result)
+        {
+          this.ngOnInit();
+        }
+      }
+    });
+  }
+
+  openDocumentModal() {
+    const dialogRef = this.dialog.open(UserDocumentModalUploadComponent, {
+      width: '400px',
+      data: {codigo_diretorio: this.diretorioRaiz.codigo_diretorio }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
         if(result)
         {
           this.ngOnInit();
