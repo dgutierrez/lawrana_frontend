@@ -1,0 +1,33 @@
+<h3>Uploads</h3>
+<div>
+  <button mat-mini-fab color="primary" matTooltip="Voltar" class="fab-button" aria-label="Voltar" disabled="{{ diretorioRaiz.codigo_diretorio_pai == '' }}" routerLink="/usuario/uploads/{{ diretorioRaiz.codigo_diretorio_pai }}">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <mat-form-field class="input_container" appearance="outline" [style.width.%]=90>
+    <mat-label>Caminho</mat-label>
+    <input matInput placeholder="Nome" [(ngModel)]="diretorioRaiz.caminho_diretorio" readonly>
+  </mat-form-field>
+</div>
+
+<div class="card-wrapper" *ngIf="diretorioRaiz.sub_diretorios.length > 0, else semDiretorio">
+  <div *ngFor="let subDiretorio of diretorioRaiz.sub_diretorios">
+    <app-user-folder-upload [diretorio]="subDiretorio"></app-user-folder-upload>
+  </div>
+</div>
+
+<div class="card-wrapper" *ngIf="diretorioRaiz.documentos.length > 0, else semDocumento">
+  <div *ngFor="let documento of diretorioRaiz.documentos">
+    <app-user-document-upload [documento]="documento"></app-user-document-upload>
+  </div>
+</div>
+
+<ng-template #semDiretorio>
+  <div class="ff-inter sem-assistentes">
+    <p>Ainda não há diretorios cadastrados.</p>
+  </div>
+</ng-template>
+<ng-template #semDocumento>
+  <div class="ff-inter sem-assistentes">
+    <p>Ainda não há documentos cadastrados.</p>
+  </div>
+</ng-template>

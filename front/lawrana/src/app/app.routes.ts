@@ -16,6 +16,7 @@ import { EmpresaConfiguracoesComponent } from './pages/empresa/empresa-configura
 import { EmpresaUsuariosComponent } from './pages/empresa/empresa-usuarios/empresa-usuarios.component';
 import { EmpresaCriarUsuarioComponent } from './pages/empresa/empresa-criar-usuario/empresa-criar-usuario.component';
 import { UserPerfilComponent } from './pages/usuario/user-perfil/user-perfil.component';
+import { UserUploadsComponent } from './pages/usuario/user-uploads/user-uploads.component';
 
 export const routes: Routes = [
   {
@@ -71,7 +72,8 @@ export const routes: Routes = [
             canActivate: [authGuard] }
         ]
       },
-
+      { path: 'uploads', component: UserUploadsComponent, canActivate: [authGuard] },
+      { path: 'uploads/:id', component: UserUploadsComponent, canActivate: [authGuard] },
       { path: 'assistentes', component: ListarUserAssistenteComponent, canActivate: [authGuard] },
       { path: 'assistentes/editarAssistente/:id', component: EditarUserAssistenteComponent, canActivate: [authGuard] },
       { path: 'assistentes/criarAssistente', component: CriarUserAssistenteComponent, canActivate: [authGuard] },

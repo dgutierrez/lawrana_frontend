@@ -1,0 +1,21 @@
+<mat-card class="card-documento">
+  <img mat-card-image src="assets/imagens/pdf.png" alt="Pdf">
+  <mat-card-content>
+    <ul>
+      <li>{{ documento.nome_documento }}</li>
+
+    </ul>
+  </mat-card-content>
+
+  <mat-card-actions class="button-wrapper">
+    <button mat-mini-fab color="primary" matTooltip="Abrir pasta" class="fab-button" aria-label="Abrir">
+      <mat-icon>folder_open</mat-icon>
+    </button>
+    <button mat-mini-fab color="primary" matTooltip="Criar novo chat" class="fab-button" aria-label="Novo chat" >
+      <mat-icon>add_comment</mat-icon>
+    </button>
+    <button mat-mini-fab color="warn" matTooltip="Deletar assistente" class="fab-button" aria-label="Deletar" >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

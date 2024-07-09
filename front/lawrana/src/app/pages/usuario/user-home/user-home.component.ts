@@ -29,7 +29,7 @@ export class UserHomeComponent implements OnInit {
     {
       icon: 'cloud_upload',
       label: 'Uploads',
-      route: 'chats'
+      route: 'uploads'
     },
     {
       icon: 'person',
