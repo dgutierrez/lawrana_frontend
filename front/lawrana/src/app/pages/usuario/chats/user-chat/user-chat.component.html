@@ -23,7 +23,11 @@
     <app-chat-spinner [foto_assistente]="chat.foto_assistente"></app-chat-spinner>
   </div>
 </div>
+
 <div class="input-container">
+  <button mat-mini-fab matTooltip="Anexar documento" class="fab-button" aria-label="Anexar">
+    <mat-icon>attach_file</mat-icon>
+  </button>
   <input [(ngModel)]="mensagem" placeholder="Digite sua mensagem..."  />
-  <button (click)="sendMessage()">Enviar</button>
+  <button mat-flat-button color="primary" (click)="sendMessage()">Enviar</button>
 </div>

@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { ChatService } from '../../../../core/services/chat.service';
 import { FormsModule } from '@angular/forms';
@@ -34,7 +34,7 @@ export type ChatItem = {
 @Component({
   selector: 'app-user-chat',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule, MatTooltipModule, NgFor, CommonModule, FormsModule, CodeChatComponent, ChatSpinnerComponent, DocumentChatComponent],
+  imports: [MatCardModule, MatButtonModule, RouterModule, MatFormFieldModule, MatInputModule, MatIconModule, MatTooltipModule, NgFor, NgIf, CommonModule, FormsModule, CodeChatComponent, ChatSpinnerComponent, DocumentChatComponent],
   templateUrl: './user-chat.component.html',
   styleUrl: './user-chat.component.scss',
   animations: [exibeNovaMensagenTrigger]

@@ -47,7 +47,7 @@ input {
   border-radius: 5px;
 }
 
-button {
+/*button {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -58,7 +58,7 @@ button {
 
 button:hover {
   background-color: #0056b3;
-}
+}*/
 
 /*.acoes {
   display: flex;
@@ -91,4 +91,24 @@ button:hover {
   button {
     margin-left: auto;
   }
+}
+
+.fab-button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 16px;
+  gap: 48px;
+  margin-bottom: 5px;
 }
