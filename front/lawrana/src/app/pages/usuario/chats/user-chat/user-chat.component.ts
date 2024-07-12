@@ -199,7 +199,22 @@ export class UserChatComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != '') {
-       console.log(result)
+        console.log('anexando documento');
+        this.chatService.anexarDocumento(this.chat.codigo_chat!, result).subscribe({
+          next: (value : Mensagem) => {
+            console.log('mensagem criada', value);
+            //value.mensagem = this.ngAfterViewInit2(value.mensagem);
+            this.chat.mensagens!.push(value)
+            this.isLoading = false;
+            this.shouldScroll = true;
+          },
+          error: (err) => {
+            var msgErros = err.error.erros;
+            console.log(msgErros);
+            this.notificador.exibirNotificacao(msgErros[0], 'Fechar', 'error');
+            this.isLoading = false;
+          }
+        });
       }
       else
       console.log('nao selecionou arquivo')

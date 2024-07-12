@@ -109,4 +109,31 @@ export class ChatService {
       })
     );
   }
+
+  anexarDocumento(idChat: string, idDocumento: string): Observable<any>{
+    const post = {
+      codigo_documento: idDocumento
+    }
+
+    return this.http.post<MensagemChatsResponse>(`${this.apiUrl}/chat/${idChat}/documento`, post, { observe: 'response' })
+    .pipe(
+      tap(response => {
+        //console.log('Response completo:', response);
+      }),
+      map(response => {
+        if (response.body && response.body.data) {
+          const chat = response.body.data;
+          //console.log('mensagem mapeado:', chat);
+          return chat;
+        } else {
+          //console.error('Formato de resposta inesperado:', response);
+          throw new Error('Formato de resposta inesperado ou mensagem não encontrado');
+        }
+      }),
+      catchError(error => {
+        console.error('Erro ao anexar documento:', error);
+        return throwError(error);
+      })
+    );
+  }
 }
