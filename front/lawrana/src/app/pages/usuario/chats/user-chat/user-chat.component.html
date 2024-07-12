@@ -25,7 +25,7 @@
 </div>
 
 <div class="input-container">
-  <button mat-mini-fab matTooltip="Anexar documento" class="fab-button" aria-label="Anexar">
+  <button mat-mini-fab matTooltip="Anexar documento" class="fab-button" aria-label="Anexar" (click)="openAnexaDocumentModal()">
     <mat-icon>attach_file</mat-icon>
   </button>
   <input [(ngModel)]="mensagem" placeholder="Digite sua mensagem..."  />

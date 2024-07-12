@@ -1,0 +1,37 @@
+<div class="modal-content">
+  <h3 mat-dialog-title>Anexar documento</h3>
+  <div class="borda">
+    <div mat-dialog-content class="conteudo">
+      <button mat-mini-fab color="primary" matTooltip="Voltar" class="fab-button" aria-label="Voltar" disabled="{{ diretorioRaiz.codigo_diretorio_pai == '' }}" (click)="abrirDiretorio(diretorioRaiz.codigo_diretorio_pai)">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <mat-form-field class="input_container" appearance="outline" [style.width.%]=90>
+        <mat-label>Caminho</mat-label>
+        <input matInput placeholder="Nome" [(ngModel)]="diretorioRaiz.caminho_diretorio" readonly>
+      </mat-form-field>
+    </div>
+    <div>
+      <div class="card-wrapper" *ngIf="diretorioRaiz.sub_diretorios.length > 0">
+        <div *ngFor="let subDiretorio of diretorioRaiz.sub_diretorios">
+          <button mat-button (click)="abrirDiretorio(subDiretorio.codigo_diretorio)" >
+            <mat-icon><img height="16px" width="16px" mat-card-image src="assets/imagens/diretorio.png" alt="Diretorio"></mat-icon>
+            {{ subDiretorio.nome_diretorio }}
+          </button>
+        </div>
+      </div>
+
+      <div class="card-wrapper" *ngIf="diretorioRaiz.documentos.length > 0">
+        <div *ngFor="let documento of diretorioRaiz.documentos">
+          <button mat-button (click)="selecionarDocumento(documento.codigo_documento)" >
+            <mat-icon><img height="16px" width="16px" mat-card-image src="assets/imagens/pdf.png" alt="Documento"></mat-icon>
+            {{ documento.nome_documento }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions class="acoes">
+    <button mat-button (click)="onCancel()">Cancelar</button>
+    <button mat-button color="primary" (click)="onConfirm()">Anexar</button>
+  </div>
+</div>

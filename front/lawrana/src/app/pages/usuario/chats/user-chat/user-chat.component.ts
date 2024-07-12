@@ -22,6 +22,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NotificacaoService } from '../../../../core/services/notificacao.service';
 import { ChatSpinnerComponent } from '../chat-spinner/chat-spinner.component';
 import { DocumentChatComponent } from '../document-chat/document-chat.component';
+import { ChatAnexaDocumentModalComponent } from './chat-anexa-document-modal/chat-anexa-document-modal.component';
 
 export type ChatItem = {
   icon: string;
@@ -189,4 +190,19 @@ export class UserChatComponent implements OnInit, AfterViewInit {
     alert('Código copiado para a área de transferência!');
   }
 
+  openAnexaDocumentModal() {
+    const dialogRef = this.dialog.open(ChatAnexaDocumentModalComponent, {
+      width: '90%',
+      height: '70%',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != '') {
+       console.log(result)
+      }
+      else
+      console.log('nao selecionou arquivo')
+    });
+  }
 }
