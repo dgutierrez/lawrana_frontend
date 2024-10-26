@@ -78,7 +78,7 @@ export class ChatService {
       mensagem: mensagem
     }
 
-    return this.http.post<MensagemChatsResponse>(`${this.apiUrl}/mensagem`, post, { observe: 'response' })
+    return this.http.post<MensagemChatsResponse>(`${this.apiUrl}/mensagemV2`, post, { observe: 'response' })
     .pipe(
       tap(response => {
         //console.log('Response completo:', response);
